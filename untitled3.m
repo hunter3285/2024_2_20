@@ -1,0 +1,1 @@
+get_all_UAV_rate(UAVs_step_with_time, UAVs_power_vec, cell_matrix)
