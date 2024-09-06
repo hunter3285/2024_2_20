@@ -1,6 +1,7 @@
 classdef Single_UAV_Solver < handle
     properties
         % basic parameters for SAR and OFDM waveform
+        % all these parameters will be set in constructor
         fs;
         fc;
         c;
@@ -33,18 +34,27 @@ classdef Single_UAV_Solver < handle
 
         % parameters for path planning
         time_slot_max;
-        mean_rate;
-        default_start;
+        mean_rate; % set in build_cells 
+        start;
+        sensing_matrix;
+        sensing_matrix_2;
+        obstacle_matrix;
+        turn_cost_right;
+        turn_cost_left;
 
         % parameters for build cell
         N_cell_x;
         N_cell_y;
         N_user_matrix;
-
+        
+        % algorithms (path solvers)
+        Solver_row=[DP_Solver(obj)]; % default path solver is DP
+        N_Solver=1; % number of algorithms
         
     end
     methods
-        build_cells(obj)
+        build_cells(obj);
+        set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
 
         function obj=Single_UAV_Solver() % constructor
             obj.fc=9e9;
@@ -64,7 +74,7 @@ classdef Single_UAV_Solver < handle
             obj.La=1;
             obj.T_aperture=1;
             obj.N_aperture=obj.T_aperture/obj.pri;
-            obj.lambda=obj.c/obj.c;
+            obj.lambda=obj.c/obj.fc;
             obj.vr=150; % first assumption
             obj.H=2500;
             obj.distance=2500;
@@ -86,8 +96,20 @@ classdef Single_UAV_Solver < handle
             obj.p_max=100e4;%1000kw
             obj.p_min=1e3;%1kw
             obj.p_mean=10e3;
-            obj.time_slot_max=150;
             obj.p_max_total= obj.time_slot_max* obj.p_mean;
+
+            obj.N_cell_x=10;
+            obj.N_cell_y=10;
+
+            obj.time_slot_max=100;
+            obj.start=[5;5];
+            obj.sensing_matrix=ones(obj.N_cell_x, obj.N_cell_y);
+            obj.sensing_matrix_2=ones(obj.N_cell_x, obj.N_cell_y);
+            obj.obstacle_matrix=zeros(obj.N_cell_x, obj.N_cell_y);
+            obj.turn_cost_left=13;
+            obj.turn_cost_right=9;
+
+
 
             % parameters not yet decided
 

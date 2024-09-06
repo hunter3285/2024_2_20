@@ -2,7 +2,7 @@ classdef abc < handle
     properties
         a
         b
-        c
+        c=6;
     end
     methods
         function set_a(obj)
