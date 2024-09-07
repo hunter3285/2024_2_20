@@ -14,7 +14,7 @@ lambda=obj.lambda;
 
 
 cell_matrix(obj.N_cell_x, obj.N_cell_y)=UAV_cell;
-coef_cell_matrix(obj.N_cell_x, obj.N_cell_y)=coef_array_cell;
+coef_vec_cell_matrix(obj.N_cell_x, obj.N_cell_y)=coef_array_cell;
 for ii=1:N_cell_x
     for jj=1:N_cell_y
         cell_matrix(ii,jj).middle_point=[cell_side*ii-cell_side/2;cell_side*jj-cell_side/2;0];
@@ -60,12 +60,12 @@ for ii=1:N_cell_x
         r=log_normal.random;
         % r=1;
         % coef_array=path_loss*r*abs(sum(my_channel(),2));%100*n_delay_taps->100*1
-        coef_array=path_loss*r*ones(100,1);
-        snr_array=p_mean*coef_array./cell_matrix(ii,jj).noise_variance; % assuming power=p_mean
+        coef_vec=path_loss*r*ones(100,1);
+        snr_array=p_mean*coef_vec./cell_matrix(ii,jj).noise_variance; % assuming power=p_mean
 
         cell_matrix(ii,jj).snr_array=snr_array(1:cell_matrix(ii,jj).N_user);
-        cell_matrix(ii,jj).coef_array=coef_array(1:cell_matrix(ii,jj).N_user);
-        coef_cell_matrix(ii,jj).coef_array=coef_array(1:cell_matrix(ii,jj).N_user);
+        cell_matrix(ii,jj).coef_array=coef_vec(1:cell_matrix(ii,jj).N_user);
+        coef_vec_cell_matrix(ii,jj).coef_array=coef_vec(1:cell_matrix(ii,jj).N_user);
         cell_matrix(ii,jj).sum_rate=sum(log2(1+cell_matrix(ii,jj).snr_array));
         
         if cell_matrix(ii,jj).N_user~=0
@@ -128,9 +128,10 @@ end
 
 
 obj.cell_matrix=cell_matrix;
-obj.coef_cell_matrix=coef_cell_matrix;
+obj.coef_vec_cell_matrix=coef_vec_cell_matrix;
 obj.total_users=total_users;
 obj.N_user_matrix=N_users;
 obj.all_rate_matrix=all_rate_matrix;
+obj.mean_rate=mean(all_rate_matrix, 'all')*5;
 
 end

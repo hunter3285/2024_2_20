@@ -54,7 +54,7 @@ N_max_user=get_max_user(cell_matrix);
 % toc;
 
 %% DP considering power: optimize path assuming power=1
-power_vec=ones(time_slot_max,1)*p_mean;
+power_vec=ones(1, time_slot_max)*p_mean;
 dp_inst_channel=DP_class_channel(ones(N_cell_x, N_cell_y), ones(N_cell_x, N_cell_y), zeros(N_cell_x, N_cell_y), power_vec);
 [sum_rate_optimal_dp_channel, visited_dp_channel, visited_dp_channel_temp, visited_dp_channel_temp_2,  all_step_dp_channel, ~, ~, n_grid_channel, ...
     rate_vec_channel, dp_inst_channel]=dp_method_channel(dp_inst_channel);

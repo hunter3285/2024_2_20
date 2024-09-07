@@ -31,7 +31,7 @@ end
 
 
 obj.cell_matrix=cell_matrix;
-obj.coef_cell_matrix=coef_cell_matrix;
+obj.coef_vec_cell_matrix=coef_cell_matrix;
 obj.total_users=total_users;
 obj.N_user_matrix=N_users;
 obj.all_rate_matrix=all_rate_matrix;

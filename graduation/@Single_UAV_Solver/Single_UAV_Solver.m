@@ -31,6 +31,7 @@ classdef Single_UAV_Solver < handle
         p_min;
         p_mean;
         p_max_total;
+        power_initial_vec;
 
         % parameters for path planning
         time_slot_max;
@@ -46,7 +47,7 @@ classdef Single_UAV_Solver < handle
         mean_rate;
         cell_matrix;
         all_rate_matrix;
-        coef_cell_matrix; % the channel coeficients for each cell
+        coef_vec_cell_matrix; % the channel coeficients for each cell
 
         % parameters for build cell
         N_cell_x;
@@ -54,7 +55,7 @@ classdef Single_UAV_Solver < handle
         N_user_matrix;
         
         % algorithms (path solvers)
-        Solver_row=[DP_Solver(obj)]; % default path solver is DP
+        Solver_row; % default path solver is DP
         N_Solver=1; % number of algorithms
 
         % unused parameters
@@ -65,7 +66,7 @@ classdef Single_UAV_Solver < handle
         build_cells(obj);
         set_cells(obj, cell_matrix)
         set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
-
+        add_DP_Solver(obj)
         function obj=Single_UAV_Solver() % constructor
             obj.fc=9e9;
             obj.c=3e8;
@@ -95,7 +96,7 @@ classdef Single_UAV_Solver < handle
             obj.N_azi=round(obj.cell_side/obj.vr/obj.pri);
             obj.N_azi= obj.N_azi-mod(obj.N_azi, obj.N_range_cell);
             obj.vr= obj.cell_side/ obj.N_azi/ obj.pri; % actual result
-            
+            obj.time_slot_max=100;
             % if direction==north_south
             %     v=[0;vr;0];
             %     UAV_pos_ini=[-distance;0;H];
@@ -107,11 +108,11 @@ classdef Single_UAV_Solver < handle
             obj.p_min=1e3;%1kw
             obj.p_mean=10e3;
             obj.p_max_total= obj.time_slot_max* obj.p_mean;
+            obj.power_initial_vec=ones(1, obj.time_slot_max)*obj.p_mean;
 
             obj.N_cell_x=10;
             obj.N_cell_y=10;
 
-            obj.time_slot_max=100;
             obj.start=[5;5];
             obj.sensing_matrix=ones(obj.N_cell_x, obj.N_cell_y);
             obj.sensing_matrix_2=ones(obj.N_cell_x, obj.N_cell_y);
@@ -120,6 +121,9 @@ classdef Single_UAV_Solver < handle
             obj.turn_cost_right=9;
             obj.noise_variance=0.01;
 
+            
+            obj.build_cells();
+            obj.add_DP_Solver();
 
 
             % parameters not yet decided
