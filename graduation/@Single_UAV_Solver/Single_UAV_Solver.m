@@ -34,13 +34,19 @@ classdef Single_UAV_Solver < handle
 
         % parameters for path planning
         time_slot_max;
-        mean_rate; % set in build_cells 
         start;
         sensing_matrix;
         sensing_matrix_2;
         obstacle_matrix;
         turn_cost_right;
         turn_cost_left;
+        noise_variance;
+
+        % parameters for path planning (set in build_cells)
+        mean_rate;
+        cell_matrix;
+        all_rate_matrix;
+        coef_cell_matrix; % the channel coeficients for each cell
 
         % parameters for build cell
         N_cell_x;
@@ -50,10 +56,14 @@ classdef Single_UAV_Solver < handle
         % algorithms (path solvers)
         Solver_row=[DP_Solver(obj)]; % default path solver is DP
         N_Solver=1; % number of algorithms
+
+        % unused parameters
+        total_users;
         
     end
     methods
         build_cells(obj);
+        set_cells(obj, cell_matrix)
         set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
 
         function obj=Single_UAV_Solver() % constructor
@@ -108,6 +118,7 @@ classdef Single_UAV_Solver < handle
             obj.obstacle_matrix=zeros(obj.N_cell_x, obj.N_cell_y);
             obj.turn_cost_left=13;
             obj.turn_cost_right=9;
+            obj.noise_variance=0.01;
 
 
 
