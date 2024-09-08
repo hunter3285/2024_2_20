@@ -40,6 +40,7 @@ classdef Path_Solver < handle
         visited_matrix_old;
         sum_rate_old;
         n_grid_old;
+        N_iter;
     end
     methods
         function obj=Path_Solver()
@@ -58,5 +59,6 @@ classdef Path_Solver < handle
         power_optimization(obj)
         set_cells(obj, UAV_Solver_instance)
         record_result(obj)
+        BCD_for_pow_path(obj)
     end
 end

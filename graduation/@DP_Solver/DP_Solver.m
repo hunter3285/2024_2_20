@@ -34,6 +34,7 @@ classdef DP_Solver < Path_Solver
 %         p_min;
 %         p_max_total
 %         cell_matrix
+%         N_iter
     end
     methods
         clear(obj)
@@ -70,6 +71,7 @@ classdef DP_Solver < Path_Solver
             obj.p_min=UAV_Solver_instance.p_min;
             obj.p_mean=UAV_Solver_instance.p_mean;
             obj.p_max_total=UAV_Solver_instance.p_max_total;
+            obj.N_iter=0;
         end
     end
 end
