@@ -48,11 +48,13 @@ classdef Single_UAV_Solver < handle
         cell_matrix;
         all_rate_matrix;
         coef_vec_cell_matrix; % the channel coeficients for each cell
+        N_max_user;
+        N_user_matrix;
 
         % parameters for build cell
         N_cell_x;
         N_cell_y;
-        N_user_matrix;
+        
         
         % algorithms (path solvers)
         Solver_row; % default path solver is DP
@@ -66,7 +68,7 @@ classdef Single_UAV_Solver < handle
         build_cells(obj);
         set_cells(obj, cell_matrix)
         set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
-        add_DP_Solver(obj)
+        initialize_DP_Solver(obj)
         function obj=Single_UAV_Solver() % constructor
             obj.fc=9e9;
             obj.c=3e8;
@@ -96,7 +98,7 @@ classdef Single_UAV_Solver < handle
             obj.N_azi=round(obj.cell_side/obj.vr/obj.pri);
             obj.N_azi= obj.N_azi-mod(obj.N_azi, obj.N_range_cell);
             obj.vr= obj.cell_side/ obj.N_azi/ obj.pri; % actual result
-            obj.time_slot_max=100;
+            obj.time_slot_max=150;
             % if direction==north_south
             %     v=[0;vr;0];
             %     UAV_pos_ini=[-distance;0;H];
@@ -123,7 +125,7 @@ classdef Single_UAV_Solver < handle
 
             
             obj.build_cells();
-            obj.add_DP_Solver();
+            obj.initialize_DP_Solver();
 
 
             % parameters not yet decided

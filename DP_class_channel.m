@@ -391,9 +391,6 @@ classdef DP_class_channel < handle
                     end
                 end
             end
-
-            
-
         end
 
 

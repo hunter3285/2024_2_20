@@ -28,6 +28,12 @@ classdef DP_Solver < Path_Solver
 %         visited_indicator_matrix_2;
 %         rate_vec;
 %         last_step_turn
+%         N_max_user
+%         p_mean;
+%         p_max;
+%         p_min;
+%         p_max_total
+%         cell_matrix
     end
     methods
         clear(obj)
@@ -59,6 +65,11 @@ classdef DP_Solver < Path_Solver
                 4, obj.time_slot_max+1, obj.N_cell_x*obj.N_cell_y);
             obj.visited_cells_matrix_2=zeros(obj.N_cell_x, obj.N_cell_y, ...
                 4, obj.time_slot_max+1, obj.N_cell_x*obj.N_cell_y);
+            obj.N_max_user=UAV_Solver_instance.N_max_user;
+            obj.p_max=UAV_Solver_instance.p_max;
+            obj.p_min=UAV_Solver_instance.p_min;
+            obj.p_mean=UAV_Solver_instance.p_mean;
+            obj.p_max_total=UAV_Solver_instance.p_max_total;
         end
     end
 end

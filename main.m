@@ -83,7 +83,8 @@ dp_inst_channel=DP_class_channel(ones(N_cell_x, N_cell_y), ones(N_cell_x, N_cell
 % sum_rate_heuristic
 % sum_rate_optimal_comm=sum_rate_optimal_comm+size(unique_columns,2)*mean_rate
 % sum_rate_optimal_round
-n_grid_count=count_n_grid(all_step_dp_channel, N_cell_x, N_cell_y, start, sensing_matrix, sensing_matrix_2);
+[~, last_step_turn, last_turn_right_or_left]=StepWithTimeSlot(all_step_dp_channel);
+n_grid_count=count_n_grid(all_step_dp_channel, N_cell_x, N_cell_y, start, sensing_matrix, sensing_matrix_2, last_step_turn);
 if n_grid_channel~=n_grid_count
     disp('error in main n_grid');
     n_grid_count
