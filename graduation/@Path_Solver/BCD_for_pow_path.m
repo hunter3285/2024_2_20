@@ -10,5 +10,5 @@ while ~isequal(obj.all_step, obj.all_step_old)
     difference=(obj.get_correct_rate+obj.n_grid*obj.mean_rate-obj.sum_rate)...
         *isequal(obj.all_step, obj.all_step_old)
 end
-disp('BCD ended')
+disp('BCD_for_pow_path ended')
 end

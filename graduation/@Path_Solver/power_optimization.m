@@ -8,7 +8,7 @@ noise_variance_matrix=obj.step_noise_variance_matrix;
 N_user_vec=obj.step_N_user_vec;
 noise_variance=noise_variance_matrix(1,1);
 
-cvx_begin quiet
+cvx_begin
     variable p(1, time_slot_max)
     val=0;
     for ii=1:time_slot_max

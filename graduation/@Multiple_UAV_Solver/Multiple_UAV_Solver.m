@@ -70,7 +70,7 @@ classdef Multiple_UAV_Solver < Single_UAV_Solver
         
     end
     methods
-%         build_cells(obj);
+        build_cells(obj);
 %         set_cells(obj, cell_matrix)
 %         set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
         initialize_DP_multi_Solver(obj)

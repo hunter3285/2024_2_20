@@ -23,6 +23,7 @@ classdef Path_Solver < handle
         visited_indicator_matrix_2;
         rate_vec;
         last_step_turn;
+        last_step_right_or_left; 
         N_max_user;
         p_mean;
         p_max;

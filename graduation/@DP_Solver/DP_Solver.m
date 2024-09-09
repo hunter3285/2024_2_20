@@ -91,6 +91,7 @@ classdef DP_Solver < Path_Solver
             obj.p_mean=UAV_Solver_instance.p_mean;
             obj.p_max_total=UAV_Solver_instance.p_max_total;
             obj.N_iter=0;
+            obj.last_step_right_or_left=0;
         end
     end
 end

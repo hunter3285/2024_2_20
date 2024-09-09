@@ -91,5 +91,8 @@ if n==turn_cost_left-1 || n==turn_cost_right-1
         last_turn_right_or_left=1; %right
     end
 end
+obj.all_step_with_time=step_with_time;
+obj.last_step_turn=last_step_turn;
+obj.last_step_right_or_left=last_turn_right_or_left;
 
 end
