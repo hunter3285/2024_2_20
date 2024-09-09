@@ -1,6 +1,6 @@
 % assume cell_matrix is done
 s=Single_UAV_Solver;
-if ~isempty(cell_matrix)
+if exist('cell_matrix', 'var')
     s.set_cells(cell_matrix);
 end
 s.initialize_DP_Solver();

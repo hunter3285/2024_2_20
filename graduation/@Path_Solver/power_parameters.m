@@ -1,14 +1,13 @@
 function power_parameters(obj)
 
 coef_vec_cell_matrix=obj.coef_vec_cell_matrix;
-all_step_dp=obj.all_step;
 N_user_matrix=obj.N_user_matrix;
 time_slot_max=obj.time_slot_max;
 noise_variance=obj.noise_variance;
 step_N_user_max=max(N_user_matrix,[], 'all');
 step_coef_matrix=zeros(step_N_user_max, time_slot_max);
 
-steps_with_time=obj.StepWithTimeSlot(all_step_dp);
+steps_with_time=obj.StepWithTimeSlot();
 step_N_user_vec=zeros(size(steps_with_time, 2),1);
 N_max_user=obj.N_max_user;
 for ii=1:size(steps_with_time, 2)

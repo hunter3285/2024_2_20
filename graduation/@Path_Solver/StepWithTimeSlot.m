@@ -1,5 +1,6 @@
 function [step_with_time, last_step_turn, last_turn_right_or_left]=...
-    StepWithTimeSlot(obj, steps)
+    StepWithTimeSlot(obj)
+steps=obj.all_step;
 turn_cost_right=obj.turn_cost_right;
 turn_cost_left=obj.turn_cost_left;
 time_slot_max=obj.time_slot_max;

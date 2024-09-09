@@ -1,10 +1,9 @@
 function [rate, rate_vec] = get_correct_rate(obj)
-all_step=obj.all_step;
 power_vec=obj.power_vec;
 % cell_matrix=obj.cell_matrix;
 coef_vec_cell_matrix=obj.coef_vec_cell_matrix;
 N_user_matrix=obj.N_user_matrix;
-all_step_with_time=obj.StepWithTimeSlot(all_step);
+all_step_with_time=obj.StepWithTimeSlot();
 rate=0;
 rate_vec=zeros(1,size(all_step_with_time,2));
 for ii=1:size(all_step_with_time,2)

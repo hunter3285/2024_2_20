@@ -37,12 +37,31 @@ classdef DP_Solver < Path_Solver
 %         N_iter
     end
     methods
+
         clear(obj)
         [max_profit, max_index]=dp_main(obj)
         [profit]=dp_rec(obj, x, y, direction, time)
         [sum_rate_optimal_dp, visited_dp, visited_temp, visited_temp_2,...
             all_step_dp, last_step_matrix, dp_matrix, n_grid, rate_vec]=...
             get_dp_result(obj)
+
+%         set_power_vec(obj, p)
+%         set_turn_costs(obj, turn_cost_left, turn_cost_right)
+%         set_sensing_matrices(obj, sensing_matrix_in, sensign_matrix_2_in)
+%         rate=get_rate(obj, x,y, time)
+%         set_channel_coef_matrix(obj, UAV_Solver_instance)
+%         valid=check_direction(obj, point_to_check)
+%         n_grid_count=count_n_grid(obj)
+%         [step_with_time, last_step_turn, last_turn_right_or_left]...
+%             = StepWithTimeSlot(obj, steps)
+%         [rate, rate_vec]=get_correct_rate(obj)
+%         power_parameters(obj)
+%         power_optimization(obj)
+%         set_cells(obj, UAV_Solver_instance)
+%         record_result(obj)
+%         BCD_for_pow_path(obj)
+
+
         function obj=DP_Solver(UAV_Solver_instance)
             obj.N_cell_x=UAV_Solver_instance.N_cell_x;
             obj.N_cell_y=UAV_Solver_instance.N_cell_y;

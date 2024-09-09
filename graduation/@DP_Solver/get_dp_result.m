@@ -102,9 +102,10 @@ obj.sum_rate=sum_rate_optimal_dp;
 obj.visited_matrix=visited_dp;
 obj.rate_vec=rate_vec;
 obj.all_step=all_step_dp;
-obj.all_step_with_time=obj.StepWithTimeSlot(all_step_dp);
+obj.all_step_with_time=obj.StepWithTimeSlot();
 obj.visited_indicator_matrix=visited_temp;
 obj.visited_indicator_matrix_2=visited_temp_2;
+obj.n_grid=n_grid;
 
 
 

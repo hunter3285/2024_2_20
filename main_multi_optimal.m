@@ -115,6 +115,7 @@ for ii=1:N_UAV
         error=(get_correct_rate(all_step_dp_channel, power_vec, cell_matrix)+n_grid_channel*mean_rate-sum_rate_optimal_dp_channel)...
             *isequal(all_step_dp_channel_old, all_step_dp_channel)
         % [~,rate_vec]=get_correct_rate(all_step_dp_channel, power_vec, cell_matrix);
+        [all_step_with_time, ~, ~]=StepWithTimeSlot(all_step_dp_channel);
     end
     
     
