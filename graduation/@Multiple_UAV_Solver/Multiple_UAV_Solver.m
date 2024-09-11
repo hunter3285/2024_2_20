@@ -131,7 +131,7 @@ classdef Multiple_UAV_Solver < Single_UAV_Solver
 
             
             obj.build_cells();
-            obj.initialize_DP_Solver();
+            obj.initialize_DP_multi_Solver();
 
 
             % parameters not yet decided
