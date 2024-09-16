@@ -20,8 +20,9 @@ classdef Path_Solver_multi < handle
     end
     methods
         all_step = eliminate_same_steps(obj, step_with_time_slot)
-        get_total_rate(obj)
+        rate=get_total_rate(obj)
         [total_visited, total_visited_2]=get_total_visited(obj, target_UAV_idx)
+        set_cells(obj, UAV_Solver_inst)
         function obj=Path_Solver_multi()
         end
  

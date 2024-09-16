@@ -4,10 +4,10 @@ function BCD_for_UAV_paths_DP(obj)
         Solver_inst=obj.Solver_row(ii); % DP_Solver
         [total_visited, total_visited_2]=obj.get_total_visited(ii);
         
-        sensing_matrix=mod(total_visited+1,2)
-        sensing_matrix_2=mod(total_visited_2+1,2)
+        sensing_matrix=mod(total_visited+1,2);
+        sensing_matrix_2=mod(total_visited_2+1,2);
         Solver_inst.set_sensing_matrices(sensing_matrix, sensing_matrix_2)
-
+        Solver_inst.clear_dp();
         [sum_rate, ~, ~, ~,  ~, ~, ~, n_grid, ~]=Solver_inst.get_dp_result;
         
 
@@ -23,12 +23,11 @@ function BCD_for_UAV_paths_DP(obj)
 
         Solver_inst.power_parameters;
         Solver_inst.power_optimization;
-        gain_after_power_opt_class=Solver_inst.rate_after_power_opt+n_grid*Solver_inst.mean_rate-sum_rate
+        gain_after_power_opt_multi=Solver_inst.rate_after_power_opt+n_grid*Solver_inst.mean_rate-sum_rate
         Solver_inst.record_result();
-        Solver_inst.clear();
-        [sum_rate_optimal_dp_class, ~, ~, ~,  ~, ~, ~, ~, ...
-            ~]=Solver_inst.get_dp_result();
-
+        Solver_inst.save_power;
+        Solver_inst.clear_dp();
+        [sum_rate_optimal_dp_class, ~, ~, ~,  ~, ~, ~, ~, ~]=Solver_inst.get_dp_result(); % based on power, solve path again
 
 
         Solver_inst.BCD_for_pow_path();
@@ -38,7 +37,7 @@ function BCD_for_UAV_paths_DP(obj)
         obj.last_turn_right_or_left_row(ii)=last_turn_right_or_left;
         obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:)=all_step_with_time;
         obj.UAV_rate_row(ii)=sum_rate_optimal_dp_class;
-        obj.total_sum_rate_row(ii)=sum(obj.UAV_rate_row);
+        obj.total_sum_rate_row(ii)=sum(obj.get_total_rate);
 
     end
     disp('Now its second round')
@@ -51,6 +50,7 @@ function BCD_for_UAV_paths_DP(obj)
 
         Solver_inst=obj.Solver_row(ii); % DP_Solver
         Solver_inst.record_result();
+        Solver_inst.save_power;
         Solver_inst.set_power_vec(ones(1, Solver_inst.time_slot_max)*Solver_inst.p_mean);
         % reset power to avoid local optimal points
 
@@ -58,7 +58,7 @@ function BCD_for_UAV_paths_DP(obj)
         sensing_matrix=mod(total_visited+1,2);
         sensing_matrix_2=mod(total_visited_2+1,2);
         Solver_inst.set_sensing_matrices(sensing_matrix, sensing_matrix_2)
-
+        Solver_inst.clear_dp();
         [sum_rate, ~, ~, ~,  all_step, ~, ~, n_grid, ~]=Solver_inst.get_dp_result; % with default power
         
 
@@ -71,14 +71,17 @@ function BCD_for_UAV_paths_DP(obj)
 
         
 
-
-        Solver_inst.power_parameters;
-        Solver_inst.power_optimization;
-        gain_after_power_opt_class=Solver_inst.rate_after_power_opt+n_grid*Solver_inst.mean_rate-sum_rate
-        Solver_inst.record_result();
-        Solver_inst.clear();
-        [sum_rate_optimal_dp_class, ~, ~, ~,  ~, ~, ~, ~, ...
-            ~]=Solver_inst.get_dp_result();
+        if ~isequal(Solver_inst.all_step, all_step)
+            Solver_inst.power_parameters;
+            Solver_inst.power_optimization;
+            gain_after_power_opt_multi=Solver_inst.rate_after_power_opt+n_grid*Solver_inst.mean_rate-sum_rate
+            Solver_inst.record_result();
+            Solver_inst.clear_dp();
+            [sum_rate, ~, ~, ~,  ~, ~, ~, ~, ...
+                ~]=Solver_inst.get_dp_result();
+        else
+            Solver_inst.power_vec=Solver_inst.power_vec_old;
+        end
 
 
 
@@ -87,18 +90,18 @@ function BCD_for_UAV_paths_DP(obj)
 
         obj.last_step_turn_row(ii)=last_step_turn;
         obj.last_turn_right_or_left_row(ii)=last_turn_right_or_left;
-        obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:)=all_step_with_time;
+%         obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:)=all_step_with_time;
         if ~isequal(all_step_with_time, obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:))
             
             disp(['UAV ', num2str(ii), ' changed']);
-            unchanged_path=unchanged_path-1;
+            obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:)=all_step_with_time;
             checked_path=zeros(1, obj.N_UAV);
         else
             checked_path(ii)=1;
         end
 
-        obj.UAV_rate_row(ii)=sum_rate_optimal_dp_class;
-        obj.total_sum_rate_row(Niter)=sum(obj.UAV_rate_row);
+        obj.UAV_rate_row(ii)=sum_rate;
+        obj.total_sum_rate_row(Niter)=sum(obj.get_total_rate);
         ii=mod(ii,3)+1;
         Niter=Niter+1;
     end

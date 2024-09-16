@@ -20,7 +20,10 @@ for ii=1:N_UAV
     if ~isequal(all_step(:,1), start)
         continue
     end
-    [~, last_step_turn, ~]=Solver_inst.StepWithTimeSlot();
+    [all_step_with_time, last_step_turn, ~]=Solver_inst.StepWithTimeSlot();
+    if ~isequal(all_step_with_time, UAVs_step_with_time(ii*2-1:ii*2, :))
+        disp('error in get_total_rate UAVs_step_with_time')
+    end
     gained_rate=Solver_inst.get_correct_rate();
     rate=rate+gained_rate;
     rate_vec(ii)=rate;

@@ -38,7 +38,7 @@ classdef DP_Solver < Path_Solver
     end
     methods
 
-        clear(obj)
+        clear_dp(obj)
         [max_profit, max_index]=dp_main(obj)
         [profit]=dp_rec(obj, x, y, direction, time)
         [sum_rate_optimal_dp, visited_dp, visited_temp, visited_temp_2,...

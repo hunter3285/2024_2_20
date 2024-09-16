@@ -18,7 +18,7 @@ d.power_optimization();
 gain_after_power_opt_class=d.rate_after_power_opt+n_grid_class*mean_rate_class-sum_rate_optimal_dp_class
 %%
 d.record_result();
-d.clear();
+d.clear_dp();
 [sum_rate_optimal_dp_class, visited_dp_class, visited_dp_class_temp, visited_dp_class_temp_2,  all_step_dp_class, ~, ~, n_grid_class, ...
     rate_vec_class]=d.get_dp_result();
 d.BCD_for_pow_path();
