@@ -27,7 +27,7 @@ for ii=1:size(all_step_with_time,2)
     end
     
 end
-if ~isempty(obj.rate_after_power_opt) && obj.rate_after_power_opt~=rate
+if ~isempty(obj.rate_after_power_opt) && abs(obj.rate_after_power_opt-rate)>1e-5
     disp('error in get_correct_rate at Path_Solver')
     obj.rate_after_power_opt
     rate

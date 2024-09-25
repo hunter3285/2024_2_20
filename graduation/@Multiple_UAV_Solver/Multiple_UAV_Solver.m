@@ -129,9 +129,10 @@ classdef Multiple_UAV_Solver < Single_UAV_Solver
             obj.turn_cost_right=9;
             obj.noise_variance=0.01;
 
-            
-            obj.build_cells();
-            obj.initialize_DP_Solver();
+            if isempty(obj.cell_matrix)
+                obj.build_cells();
+            end
+            obj.initialize_DP_multi_Solver();
 
 
             % parameters not yet decided

@@ -37,11 +37,14 @@ classdef Path_Solver < handle
         % parameters gained after having power optimization
         rate_after_power_opt;
         % parameters for remembering last result
-        all_step_old;
-        visited_matrix_old;
-        sum_rate_old;
-        n_grid_old;
+        all_step_old;           % set in record_result
+        visited_matrix_old;     % set in record_result
+        sum_rate_old;           % set in record_result
+        n_grid_old;             % set in record_result
         N_iter;
+        power_vec_old;          % set in save_power
+        % parameter for remerbering BCD result
+        BCD_rate_row;
     end
     methods
         function obj=Path_Solver()
@@ -61,5 +64,6 @@ classdef Path_Solver < handle
         set_cells(obj, UAV_Solver_instance)
         record_result(obj)
         BCD_for_pow_path(obj)
+        save_power(obj)
     end
 end
