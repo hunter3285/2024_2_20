@@ -102,9 +102,9 @@ end
 
 
 
-% UAV_start_end=get_start_end(all_step_dp, cell_matrix, distance, cell_side);
+UAV_start_end=get_start_end(all_step_dp, cell_matrix, distance, cell_side);
 %%
-% image_heuristic=get_image(UAV_start_end,all_step_heuristic, N_range_cell, vr, T_PRI, cell_side, cell_matrix);
+image_heuristic=get_image(UAV_start_end,all_step_heuristic, N_range_cell, vr, T_PRI, cell_side, cell_matrix);
 % cell_matrix=get_image(UAV_start_end, all_step_dp, cell_matrix);
 %%
 error=get_correct_rate(all_step_dp_channel, power_vec, cell_matrix)+n_grid_channel*mean_rate-sum_rate_optimal_dp_channel
