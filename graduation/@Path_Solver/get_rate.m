@@ -3,6 +3,11 @@ function rate=get_rate(obj, x,y, time)
         rate=0;
         return;
     end
+    if ~obj.check_direction([x;y])
+        rate=0;
+        return;
+    end
+
     p=obj.power_vec(time+1);
     channel_vec=obj.coef_vec_cell_matrix(x,y,:);
     if isempty(channel_vec)
@@ -15,5 +20,5 @@ function rate=get_rate(obj, x,y, time)
     if obj.N_user_matrix(x,y)~=0
         rate=rate/obj.N_user_matrix(x,y);
     end
-    % [x,y,rate]
+%     [x,y,rate]
 end

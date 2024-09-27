@@ -5,7 +5,7 @@ N_cell_y=obj.N_cell_y;
 % start=obj.start;
 sensing_matrix=obj.sensing_matrix;
 sensing_matrix_2=obj.sensing_matrix_2;
-last_step_turn=obj.last_step_turn;
+[~,last_step_turn,~]=obj.StepWithTimeSlot();
 
 visited_matrix=zeros(N_cell_x, N_cell_y);
 visited_matrix_2=zeros(N_cell_x, N_cell_y);

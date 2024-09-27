@@ -19,8 +19,8 @@ classdef Path_Solver < handle
         N_user_matrix;
         sum_rate;
         visited_matrix;
-        visited_indicator_matrix;
-        visited_indicator_matrix_2;
+        visited_indicator_matrix;           % if direction==0||direction==2
+        visited_indicator_matrix_2;         % if direction==1||direction==3
         rate_vec;
         last_step_turn;
         last_step_right_or_left; 
@@ -45,6 +45,11 @@ classdef Path_Solver < handle
         power_vec_old;          % set in save_power
         % parameter for remerbering BCD result
         BCD_rate_row;
+
+        current_x;
+        current_y;
+        current_direction;
+        current_time;
     end
     methods
         function obj=Path_Solver()
@@ -65,5 +70,7 @@ classdef Path_Solver < handle
         record_result(obj)
         BCD_for_pow_path(obj)
         save_power(obj)
+        [x_right, y_right, x_straight, y_straight, x_left, y_left]=get_neighbor(obj)
+        [visited_if_right, visited_if_straight, visited_if_left]=get_current_visited(obj)
     end
 end
