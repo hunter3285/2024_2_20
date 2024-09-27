@@ -61,6 +61,8 @@ classdef Single_UAV_Solver < handle
         % 這裡原本想用一個row存各個Solver，但是沒辦法做到，因此Solver_row就是DP_Solver
         N_Solver=1; % number of algorithms
         heuristic_solver;
+        dp_solver_communication;
+        dp_solver_sensing;
 
         % unused parameters
         total_users;
@@ -72,6 +74,8 @@ classdef Single_UAV_Solver < handle
         set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
         initialize_DP_Solver(obj)
         initialize_Heuristic_Solver(obj)
+        initialize_DP_comm_Solver(obj)
+        initalize_DP_sens_Solver(obj)
         function obj=Single_UAV_Solver() % constructor
             obj.fc=9e9;
             obj.c=3e8;

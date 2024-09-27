@@ -27,7 +27,7 @@ function [ profit]=dp_rec(obj, x, y, direction, time) % time=0:obj.time_slot_max
                 %       profit=profit+obj.mean_rate;
                 %    end
                 end
-                if sum(obj.sensing_matrix+obj.sensing_matrix_2,'all')==0
+                if sum(obj.sensing_matrix+obj.sensing_matrix_2,'all')==0 && obj.get_rate(obj.start(1), obj.start(2), 0)==0
                     profit=profit+1e-6; % in case the rate is zero
                 end
                 obj.dp_matrix(x,y,direction+1, time+1)=profit;

@@ -1,4 +1,4 @@
-function [sum_rate_optimal_dp, visited_dp, visited_temp, visited_temp_2, all_step_dp, last_step_matrix,...
+function [sum_rate_optimal_dp, visited_dp, visited_inidicator, visited_indicator_2, all_step_dp, last_step_matrix,...
     dp_matrix, n_grid, rate_vec]=...
     get_dp_result(obj)
 
@@ -22,15 +22,15 @@ time=obj.time_slot_max-1;
 last_step_matrix=obj.last_step_matrix;
 dp_matrix=obj.dp_matrix;
 
-visited_temp=zeros(obj.N_cell_x, obj.N_cell_y);
-visited_temp_2=visited_temp;
+visited_inidicator=zeros(obj.N_cell_x, obj.N_cell_y);
+visited_indicator_2=visited_inidicator;
 for ii=1:obj.N_cell_x
     for jj=1:obj.N_cell_y
-        visited_temp(ii,jj)=obj.visited_cells_matrix(x,y,direction+1, time+1, (jj-1)*10+ii);
-        visited_temp_2(ii,jj)=obj.visited_cells_matrix_2(x,y,direction+1, time+1, (jj-1)*10+ii);
+        visited_inidicator(ii,jj)=obj.visited_cells_matrix(x,y,direction+1, time+1, (jj-1)*10+ii);
+        visited_indicator_2(ii,jj)=obj.visited_cells_matrix_2(x,y,direction+1, time+1, (jj-1)*10+ii);
     end
 end
-n_grid=sum(visited_temp.*obj.sensing_matrix, "all")+ sum(visited_temp_2.*obj.sensing_matrix_2, "all");
+n_grid=sum(visited_inidicator.*obj.sensing_matrix, "all")+ sum(visited_indicator_2.*obj.sensing_matrix_2, "all");
 % visited_matrix=dp_inst.visited_cells_matrix;
 % all_rate_matrix=dp_inst.all_rate_matrix;
 %% tracing the map
@@ -103,8 +103,8 @@ obj.visited_matrix=visited_dp;
 obj.rate_vec=rate_vec;
 obj.all_step=all_step_dp;
 obj.all_step_with_time=obj.StepWithTimeSlot();
-obj.visited_indicator_matrix=visited_temp;
-obj.visited_indicator_matrix_2=visited_temp_2;
+obj.visited_indicator_matrix=visited_inidicator;
+obj.visited_indicator_matrix_2=visited_indicator_2;
 obj.n_grid=n_grid;
 
 
