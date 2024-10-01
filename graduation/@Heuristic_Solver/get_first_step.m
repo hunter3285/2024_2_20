@@ -22,6 +22,7 @@ function get_first_step(obj)
     gain_rate_2=obj.get_rate(x2, y2, time+1-1);
     gain_rate_3=obj.get_rate(x3, y3, time+1-1);
     gain_rate_4=obj.get_rate(x4, y4, time+1-1);
+    % get_rate will handle out of bound situations
     x_row=[x1,x2,x3,x4];
     y_row=[y1,y2,y3,y4];
     v=[gain_rate_1, gain_rate_2, gain_rate_3, gain_rate_4];
