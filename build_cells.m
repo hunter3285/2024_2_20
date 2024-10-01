@@ -145,6 +145,7 @@ end
 for ii=1:N_cell_y
     for jj=1:N_cell_x
         cell_matrix(ii,jj).image=zeros(N_azi, N_azi);
+        cell_matrix(ii,jj).image_horizontal=zeros(N_azi, N_azi);
     end
 end
 

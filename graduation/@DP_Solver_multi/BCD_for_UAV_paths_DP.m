@@ -96,6 +96,7 @@ function BCD_for_UAV_paths_DP(obj)
             disp(['UAV ', num2str(ii), ' changed']);
             obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:)=all_step_with_time;
             checked_path=zeros(1, obj.N_UAV);
+            checked_path(ii)=1;
         else
             checked_path(ii)=1;
         end

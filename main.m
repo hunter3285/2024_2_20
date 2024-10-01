@@ -102,20 +102,20 @@ end
 
 
 
-UAV_start_end=get_start_end(all_step_dp, cell_matrix, distance, cell_side);
+UAV_start_end=get_start_end(all_step_dp_channel, cell_matrix, distance, cell_side);
 %%
-image_heuristic=get_image(UAV_start_end,all_step_heuristic, N_range_cell, vr, T_PRI, cell_side, cell_matrix);
-% cell_matrix=get_image(UAV_start_end, all_step_dp, cell_matrix);
+% image_heuristic=get_image(UAV_start_end,all_step_heuristic, N_range_cell, vr, T_PRI, cell_side, cell_matrix);
+cell_matrix=get_image(UAV_start_end, all_step_dp_channel, cell_matrix);
 %%
 error=get_correct_rate(all_step_dp_channel, power_vec, cell_matrix)+n_grid_channel*mean_rate-sum_rate_optimal_dp_channel
 all_step_with_time=StepWithTimeSlot(all_step_dp_channel);
 %%
-[coef_matrix, N_user_max, noise_variance_matrix, N_user_vec]=power_parameters(cell_matrix, all_step_dp_channel, N_user_matrix, time_slot_max, noise_variance);
+% [coef_matrix, N_user_max, noise_variance_matrix, N_user_vec]=power_parameters(cell_matrix, all_step_dp_channel, N_user_matrix, time_slot_max, noise_variance);
 %% optimize power the first time
-[popt, optval] = power_optimization(coef_matrix, N_user_max, p_max_total, noise_variance_matrix, N_user_vec);
+% [popt, optval] = power_optimization(coef_matrix, N_user_max, p_max_total, noise_variance_matrix, N_user_vec);
 %%
-% N_azi=round(cell_side/vr/T_PRI);
-% plot_image(cell_matrix, N_azi);
+N_azi=round(cell_side/vr/T_PRI);
+plot_image(cell_matrix, N_azi);
 % flip(transpose(visited_dp))
 
 
