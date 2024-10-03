@@ -7,6 +7,9 @@ classdef node < handle
         % 0: not visited, 1: in the list, 2: visited
         cost=1e9;
         spent_time;
+        last_x;
+        last_y;
+        last_direction;
     end
 
     methods

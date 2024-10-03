@@ -54,6 +54,17 @@ node2.spent_time=1;
 node3.spent_time=1;
 node4.spent_time=1;
 
+node1.visited_state=1;
+node2.visited_state=1;
+node3.visited_state=1;
+node4.visited_state=1;
+
+
+
+obj.replace_node_in_node_list(node1)
+obj.replace_node_in_node_list(node2)
+obj.replace_node_in_node_list(node3)
+obj.replace_node_in_node_list(node4)
 
 
 

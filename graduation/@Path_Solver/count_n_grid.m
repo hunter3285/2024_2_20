@@ -59,4 +59,5 @@ end
 % sensing_matrix
 % sensing_matrix_2
 n_grid=sum(visited_matrix_2.*sensing_matrix_2, 'all')+sum(visited_matrix.*sensing_matrix,'all');
+obj.n_grid=n_grid;
 

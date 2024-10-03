@@ -44,6 +44,7 @@ classdef DP_Solver < Path_Solver
         [sum_rate_optimal_dp, visited_dp, visited_temp, visited_temp_2,...
             all_step_dp, last_step_matrix, dp_matrix, n_grid, rate_vec]=...
             get_dp_result(obj)
+        [rate, N_SAR, rate_comm]=get_BCD_result(obj)
 
 %         set_power_vec(obj, p)
 %         set_turn_costs(obj, turn_cost_left, turn_cost_right)
