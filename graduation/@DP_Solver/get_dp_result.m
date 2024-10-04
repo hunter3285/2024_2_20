@@ -10,14 +10,15 @@ function [sum_rate_optimal_dp, visited_dp, visited_inidicator, visited_indicator
 % tic;
 [sum_rate_optimal_dp, max_index]=obj.dp_main();
 % toc;
+max_index
 %%
 % dp_matrix=dp_inst.dp_matrix;
 visited_reverse=zeros(obj.N_cell_x, obj.N_cell_y);
 % visited_optimal=visited_reverse;
-direction=ceil(max_index / 100)-1; % 0 to 3
-real_index=(max_index-direction*100);
-x=mod(real_index - 1, 10)+1;
-y=ceil(real_index/10);
+direction=ceil(max_index / (obj.N_cell_x*obj.N_cell_y))-1 % 0 to 3
+real_index=(max_index-direction*obj.N_cell_x*obj.N_cell_y)
+x=mod(real_index - 1, obj.N_cell_x)+1
+y=ceil(real_index/obj.N_cell_x)
 time=obj.time_slot_max-1;
 last_step_matrix=obj.last_step_matrix;
 dp_matrix=obj.dp_matrix;
@@ -26,8 +27,8 @@ visited_inidicator=zeros(obj.N_cell_x, obj.N_cell_y);
 visited_indicator_2=visited_inidicator;
 for ii=1:obj.N_cell_x
     for jj=1:obj.N_cell_y
-        visited_inidicator(ii,jj)=obj.visited_cells_matrix(x,y,direction+1, time+1, (jj-1)*10+ii);
-        visited_indicator_2(ii,jj)=obj.visited_cells_matrix_2(x,y,direction+1, time+1, (jj-1)*10+ii);
+        visited_inidicator(ii,jj)=obj.visited_cells_matrix(x,y,direction+1, time+1, (jj-1)*obj.N_cell_y+ii);
+        visited_indicator_2(ii,jj)=obj.visited_cells_matrix_2(x,y,direction+1, time+1, (jj-1)*obj.N_cell_y+ii);
     end
 end
 n_grid=sum(visited_inidicator.*obj.sensing_matrix, "all")+ sum(visited_indicator_2.*obj.sensing_matrix_2, "all");
@@ -79,10 +80,10 @@ total=last_index+1;
 visited_dp=(total-visited_reverse).*(visited_reverse~=0);
 
 %%
-direction=ceil(max_index / 100)-1; % 0 to 3
-real_index=(max_index-direction*100);
-x=mod(real_index - 1, 10)+1;
-y=ceil(real_index/10);
+direction=ceil(max_index / (obj.N_cell_x*obj.N_cell_y))-1; % 0 to 3
+real_index=(max_index-direction*obj.N_cell_x*obj.N_cell_y);
+x=mod(real_index - 1, obj.N_cell_x)+1;
+y=ceil(real_index/obj.N_cell_x);
 time=obj.time_slot_max-1;
 rate_vec=zeros(1,size(all_step_dp,2));
 for ii=1:size(all_step_dp,2)

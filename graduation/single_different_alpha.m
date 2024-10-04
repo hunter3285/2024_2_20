@@ -29,7 +29,7 @@ for ii=1:N_iter
     for jj=1:length(alpha_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
-            = test_single_UAV_time(alpha_row(jj));
+            = test_single_UAV_alpha(alpha_row(jj));
 
 
 

@@ -8,7 +8,7 @@ function [ profit]=dp_rec(obj, x, y, direction, time) % time=0:obj.time_slot_max
         return;
     end
     % when using direction as index of matrix, +1 to become 1:4
-    visited_index=(y-1)*10+x;
+    visited_index=(y-1)*obj.N_cell_x+x;
     if obj.dp_matrix(x,y,direction+1, time+1)==-1 % not yet calculated
         if time==0
             if x==obj.start(1) && y==obj.start(2) %  time=0 at start point

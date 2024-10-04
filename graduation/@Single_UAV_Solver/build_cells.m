@@ -133,7 +133,7 @@ obj.total_users=total_users;
 obj.N_user_matrix=N_users;
 obj.all_rate_matrix=all_rate_matrix;
 obj.mean_rate=mean(all_rate_matrix, 'all')*10;
-disp('mean rate is 10 times larger in build_cells')
+disp('mean rate is 10 times larger in build_cells (default)')
 obj.N_max_user=max(N_users,[], 'all');
 
 end
