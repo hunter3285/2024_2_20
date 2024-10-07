@@ -1,7 +1,7 @@
 %% setting the test
-N_iter=2;
+N_iter=10;
 N_Solver=4;
-time_slot_max_row=[50 80 110 140 170];
+time_slot_max_row=[40 80 120 160 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(time_slot_max_row));
 comm_rate_dp_matrix     =zeros(N_iter, length(time_slot_max_row));
@@ -75,10 +75,16 @@ for ii=1:N_iter
 
     end
 end
+mean_rate_dp=mean(rate_dp_matrix);
+mean_rate_heu=mean(rate_heu_matrix);
+mean_rate_sens=mean(rate_sens_matrix);
+mean_rate_comm=mean(rate_comm_matrix);
+
 mean_rate_dp_normalized=mean(rate_dp_matrix_normalized);
 mean_rate_heu_normalized=mean(rate_heu_matrix_normalized);
 mean_rate_sens_normalized=mean(rate_sens_matrix_normalized);
 mean_rate_comm_normalized=mean(rate_comm_matrix_normalized);
+
 
 mean_N_SAR_dp=mean(N_SAR_dp_matrix);
 mean_N_SAR_heu=mean(N_SAR_heu_matrix);
@@ -89,30 +95,48 @@ mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
 mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
+%%
+figure()
+plot(time_slot_max_row, mean_rate_dp, '-o');
+hold on
+plot(time_slot_max_row, mean_rate_heu, '-^');
+plot(time_slot_max_row, mean_rate_sens, '-x');
+plot(time_slot_max_row, mean_rate_comm, '-*');
+ylabel bits
+xlabel('time limit')
+grid on
+legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
+title("Average performance on different time limit")
 
 figure()
-plot(time_slot_max_row, mean_rate_dp_normalized);
+plot(time_slot_max_row, mean_rate_dp_normalized, '-o');
 hold on
-plot(time_slot_max_row, mean_rate_heu_normalized);
-plot(time_slot_max_row, mean_rate_sens_normalized);
-plot(time_slot_max_row, mean_rate_comm_normalized);
+plot(time_slot_max_row, mean_rate_heu_normalized, '-^');
+plot(time_slot_max_row, mean_rate_sens_normalized, '-x');
+plot(time_slot_max_row, mean_rate_comm_normalized, '-*');
+grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
+title("Average normalized performance on different time limit")
 
 figure()
-plot(time_slot_max_row, mean_N_SAR_dp);
+plot(time_slot_max_row, mean_N_SAR_dp, '--o');
 hold on
-plot(time_slot_max_row, mean_N_SAR_heu);
-plot(time_slot_max_row, mean_N_SAR_sens);
-plot(time_slot_max_row, mean_N_SAR_comm);
+plot(time_slot_max_row, mean_N_SAR_heu, '--^');
+plot(time_slot_max_row, mean_N_SAR_sens, '--x');
+plot(time_slot_max_row, mean_N_SAR_comm, '--*');
+grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
+title("Average SAR coverage on different time limit")
 
 figure()
-plot(time_slot_max_row, mean_comm_rate_dp_normalized);
+plot(time_slot_max_row, mean_comm_rate_dp_normalized, '-o');
 hold on
-plot(time_slot_max_row, mean_comm_rate_heu_normalized);
-plot(time_slot_max_row, mean_comm_rate_sens_nomalized);
-plot(time_slot_max_row, mean_comm_rate_comm_normalized);
+plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
+plot(time_slot_max_row, mean_comm_rate_sens_nomalized, '-x');
+plot(time_slot_max_row, mean_comm_rate_comm_normalized, '-*');
+grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
+title("Average communiation performance on different time limit")
 
 
 save('single_different_time.mat')

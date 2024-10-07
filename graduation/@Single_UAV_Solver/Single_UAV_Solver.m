@@ -119,8 +119,8 @@ classdef Single_UAV_Solver < handle
             obj.p_max_total= obj.time_slot_max* obj.p_mean;
             obj.power_initial_vec=ones(1, obj.time_slot_max)*obj.p_mean;
 
-            obj.N_cell_x=15;
-            obj.N_cell_y=15;
+            obj.N_cell_x=20;
+            obj.N_cell_y=20;
 
             obj.start=[5;5];
             obj.sensing_matrix=ones(obj.N_cell_x, obj.N_cell_y);

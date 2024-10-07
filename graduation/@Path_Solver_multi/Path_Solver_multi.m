@@ -17,6 +17,7 @@ classdef Path_Solver_multi < handle
         % 'fixed' here means its not for the same purpose as above
         % but these matrices are the from the setting of the original problem
         % e.g., some cells we don't want to visit
+        N_max=15;
     end
     methods
         all_step = eliminate_same_steps(obj, step_with_time_slot)

@@ -1,6 +1,7 @@
 function BCD_for_pow_path(obj)
 ii=1;
 obj.N_iter=0;
+obj.BCD_rate_row_old=obj.BCD_rate_row;
 obj.BCD_rate_row=[];
 while ~isequal(obj.all_step, obj.all_step_old) % after some power optimization, the path has changed
     disp(['one UAV has power path BCD ', num2str(ii), 'th iteration'])

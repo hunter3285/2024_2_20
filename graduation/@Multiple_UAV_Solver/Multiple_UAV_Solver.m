@@ -1,4 +1,5 @@
 classdef Multiple_UAV_Solver < Single_UAV_Solver
+    % 注意是繼承Single_UAV_Solver
     % 被註解掉的property是因為只能定義一次
     % 被註解掉的method則是因為一模一樣，不用改
     properties
@@ -62,10 +63,12 @@ classdef Multiple_UAV_Solver < Single_UAV_Solver
 %         Solver_row; % default path solver is DP
 %         N_Solver; % number of algorithms
         N_UAV;
-
+    
         % unused parameters
 %         total_users;
-
+        % Solvers (Solver row is for origninal DP)
+        DP_comm_multi_Solver;
+        DP_sens_multi_Solver;
 
         
     end
@@ -74,6 +77,8 @@ classdef Multiple_UAV_Solver < Single_UAV_Solver
 %         set_cells(obj, cell_matrix)
 %         set_sensing_matrix(obj, sensing_matrix, sensing_matrix_2);
         initialize_DP_multi_Solver(obj)
+        initialize_DP_comm_multi_Solver(obj)
+        initialize_DP_sens_multi_Solver(obj)
         function obj=Multiple_UAV_Solver() % constructor
             obj.N_UAV=3;
             obj.fc=9e9;

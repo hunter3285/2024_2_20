@@ -10,12 +10,16 @@ classdef DP_Solver_multi < Path_Solver_multi
 %         N_cell_y;
 %         start;
 %         mean_rate;
+%         fixed_sensing_matrix;
+%         fixed_sensing_matrix_2;
+%         N_max=15;
 
         total_sum_rate_row; % for recording sum_rate at each iteration
         
     end
     methods
         BCD_for_UAV_paths_DP(obj)
+        get_comm_paths(obj)
 %         all_step = eliminate_same_steps(obj, step_with_time_slot)
 %         get_total_rate(obj)
 %         [total_visited, total_visited_2]=get_total_visited(obj, target_UAV_idx)

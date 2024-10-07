@@ -5,7 +5,10 @@ function BCD_for_UAV_paths_DP(obj)
         [total_visited, total_visited_2]=obj.get_total_visited(ii);
         
         sensing_matrix=mod(total_visited+1,2);
+        sensing_matrix=sensing_matrix.*obj.fixed_sensing_matrix;
         sensing_matrix_2=mod(total_visited_2+1,2);
+        sensing_matrix_2=sensing_matrix_2.*obj.fixed_sensing_matrix_2;
+        
         Solver_inst.set_sensing_matrices(sensing_matrix, sensing_matrix_2)
         Solver_inst.clear_dp();
         [sum_rate, ~, ~, ~,  ~, ~, ~, n_grid, ~]=Solver_inst.get_dp_result;
@@ -45,7 +48,10 @@ function BCD_for_UAV_paths_DP(obj)
     ii=1;
     Niter=4;
     checked_path=zeros(1, obj.N_UAV);
-    while ~isequal(checked_path, ones(1, obj.N_UAV))
+    n=0;
+    N_max=obj.N_max;
+    while ~isequal(checked_path, ones(1, obj.N_UAV)) && n<N_max
+        n=n+1;
         disp(['Now is UAV ',num2str(ii)]);
 
         Solver_inst=obj.Solver_row(ii); % DP_Solver
@@ -106,5 +112,7 @@ function BCD_for_UAV_paths_DP(obj)
         ii=mod(ii,3)+1;
         Niter=Niter+1;
     end
-
+    if n>N_max
+        disp('exceed max iteration limit')
+    end
 end

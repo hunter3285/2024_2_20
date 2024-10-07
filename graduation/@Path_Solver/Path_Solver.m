@@ -45,6 +45,7 @@ classdef Path_Solver < handle
         power_vec_old;          % set in save_power
         % parameter for remerbering BCD result
         BCD_rate_row;
+        BCD_rate_row_old;
 
         current_x;
         current_y;

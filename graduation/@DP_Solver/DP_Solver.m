@@ -40,11 +40,18 @@ classdef DP_Solver < Path_Solver
 
         clear_dp(obj)
         [max_profit, max_index]=dp_main(obj)
+        [max_profit, max_index]=dp_main_N_th(obj, N)
         [profit]=dp_rec(obj, x, y, direction, time)
-        [sum_rate_optimal_dp, visited_dp, visited_temp, visited_temp_2,...
-            all_step_dp, last_step_matrix, dp_matrix, n_grid, rate_vec]=...
-            get_dp_result(obj)
+
+        [sum_rate_optimal_dp, visited_dp, visited_inidicator, ...
+            visited_indicator_2,all_step_dp, last_step_matrix,...
+            dp_matrix, n_grid, rate_vec] = get_dp_result(obj)
+
         [rate, N_SAR, rate_comm]=get_BCD_result(obj)
+
+        [sum_rate_optimal_dp, visited_dp, visited_inidicator, ...
+            visited_indicator_2, all_step_dp, last_step_matrix,...
+            dp_matrix, n_grid, rate_vec] = get_N_th_DP_result(obj, N)
 
 %         set_power_vec(obj, p)
 %         set_turn_costs(obj, turn_cost_left, turn_cost_right)
