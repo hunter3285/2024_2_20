@@ -103,7 +103,7 @@ plot(time_slot_max_row, mean_rate_heu, '-^');
 plot(time_slot_max_row, mean_rate_sens, '-x');
 plot(time_slot_max_row, mean_rate_comm, '-*');
 ylabel bits
-xlabel('time limit')
+xlabel('time slot')
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average performance on different time limit")
@@ -114,6 +114,7 @@ hold on
 plot(time_slot_max_row, mean_rate_heu_normalized, '-^');
 plot(time_slot_max_row, mean_rate_sens_normalized, '-x');
 plot(time_slot_max_row, mean_rate_comm_normalized, '-*');
+xlabel('time slot')
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average normalized performance on different time limit")
@@ -124,6 +125,8 @@ hold on
 plot(time_slot_max_row, mean_N_SAR_heu, '--^');
 plot(time_slot_max_row, mean_N_SAR_sens, '--x');
 plot(time_slot_max_row, mean_N_SAR_comm, '--*');
+ylabel cells
+xlabel('time slot')
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average SAR coverage on different time limit")
@@ -134,6 +137,8 @@ hold on
 plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
 plot(time_slot_max_row, mean_comm_rate_sens_nomalized, '-x');
 plot(time_slot_max_row, mean_comm_rate_comm_normalized, '-*');
+xlabel('time slot')
+grid on
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average communiation performance on different time limit")
