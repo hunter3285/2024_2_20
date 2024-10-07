@@ -13,7 +13,8 @@ classdef DP_Solver_multi < Path_Solver_multi
 %         fixed_sensing_matrix;
 %         fixed_sensing_matrix_2;
 %         N_max=15;
-
+%         n_grid_total;
+%         comm_rate_total
         total_sum_rate_row; % for recording sum_rate at each iteration
         
     end

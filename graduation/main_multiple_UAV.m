@@ -10,3 +10,7 @@ end
 m.initialize_DP_comm_multi_Solver();
 DP_comm_Solver_multi_inst=m.DP_comm_multi_Solver; % an DP_Solver_multi object
 DP_comm_Solver_multi_inst.get_comm_paths();
+
+m.initialize_DP_sens_multi_Solver();
+DP_sens_Solver_multi_inst=m.DP_sens_multi_Solver;
+DP_sens_Solver_multi_inst.get_sens_paths;
