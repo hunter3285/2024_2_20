@@ -51,6 +51,7 @@ classdef Path_Solver < handle
         current_y;
         current_direction;
         current_time;
+        N_max_pow_path=10;
     end
     methods
         function obj=Path_Solver()

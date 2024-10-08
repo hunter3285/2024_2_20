@@ -2,6 +2,7 @@ function [rate_dp, N_SAR_dp, comm_rate_dp, rate_sens, N_SAR_sens, comm_rate_sens
     rate_comm, N_SAR_comm, comm_rate_comm]=test_multiple_UAV_time(time)
 m=Multiple_UAV_Solver();
 m.time_slot_max=time;
+m.power_initial_vec=ones(1, time)*m.p_mean;
 m.initialize_DP_multi_Solver;
 
 DP_Solver_multi_inst=m.Solver_row(1); % DP_Solver_multi

@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=10;
+N_iter=2;
 N_Solver=4;
 time_slot_max_row=[40 80 120 160 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
@@ -105,7 +105,7 @@ plot(time_slot_max_row, mean_rate_comm, '-*');
 ylabel('Total performance (bits)')
 xlabel('Time limit (Time slots)')
 grid on
-legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
+legend('DP(Proposed)', 'Sensing only', 'Communication only')
 title("Average performance on different time limit")
 
 figure()

@@ -45,11 +45,11 @@ c.power_optimization();
 gain_after_power_opt_class=c.rate_after_power_opt+n_grid_comm*mean_rate_class-sum_rate_comm
 error_power=c.get_correct_rate()-c.rate_after_power_opt
 
-comm_rate_comm=c.get_correct_rate()
+comm_rate_comm=c.get_correct_rate();
 c.sensing_matrix=ones(c.N_cell_x, c.N_cell_y);
 c.sensing_matrix_2=ones(c.N_cell_x, c.N_cell_y);
-N_SAR_comm=c.count_n_grid
-rate_comm=comm_rate_comm+N_SAR_comm*mean_rate_class
+N_SAR_comm=c.count_n_grid;
+rate_comm=comm_rate_comm+N_SAR_comm*mean_rate_class;
 
 
 %% sensing centric

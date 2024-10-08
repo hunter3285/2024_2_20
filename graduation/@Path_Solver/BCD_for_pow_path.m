@@ -3,7 +3,7 @@ ii=1;
 obj.N_iter=0;
 obj.BCD_rate_row_old=obj.BCD_rate_row;
 obj.BCD_rate_row=[];
-while ~isequal(obj.all_step, obj.all_step_old) % after some power optimization, the path has changed
+while ~isequal(obj.all_step, obj.all_step_old)  && ii<=obj.N_max_pow_path% after some power optimization, the path has changed
     disp(['one UAV has power path BCD ', num2str(ii), 'th iteration'])
     obj.N_iter=obj.N_iter+1;
     obj.BCD_rate_row(obj.N_iter)=obj.sum_rate; % before finding the path again
