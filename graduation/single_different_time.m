@@ -142,9 +142,9 @@ grid on
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average communiation performance on different time limit")
+%%
 
-
-save('single_different_time.mat')
+save('single_different_time2.mat')
 
 % assume cell_matrix is done
 

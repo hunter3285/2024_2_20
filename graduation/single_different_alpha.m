@@ -5,9 +5,9 @@ alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(alpha_row));
 comm_rate_dp_matrix     =zeros(N_iter, length(alpha_row));
-% rate_heu_matrix         =zeros(N_iter, length(alpha_row));
-% N_SAR_heu_matrix        =zeros(N_iter, length(alpha_row));
-% comm_rate_heu_matrix    =zeros(N_iter, length(alpha_row));
+rate_heu_matrix         =zeros(N_iter, length(alpha_row));
+N_SAR_heu_matrix        =zeros(N_iter, length(alpha_row));
+comm_rate_heu_matrix    =zeros(N_iter, length(alpha_row));
 rate_sens_matrix        =zeros(N_iter, length(alpha_row));
 N_SAR_sens_matrix       =zeros(N_iter, length(alpha_row));
 comm_rate_sens_matrix   =zeros(N_iter, length(alpha_row));
@@ -17,8 +17,8 @@ comm_rate_comm_matrix   =zeros(N_iter, length(alpha_row));
 
 rate_dp_matrix_normalized=          zeros(N_iter,length(alpha_row));
 comm_rate_dp_matrix_normalized=     zeros(N_iter,length(alpha_row));
-% rate_heu_matrix_normalized=         zeros(N_iter,length(alpha_row));
-% comm_rate_heu_matrix_normalized=    zeros(N_iter,length(alpha_row));
+rate_heu_matrix_normalized=         zeros(N_iter,length(alpha_row));
+comm_rate_heu_matrix_normalized=    zeros(N_iter,length(alpha_row));
 rate_sens_matrix_normalized=        zeros(N_iter,length(alpha_row));
 comm_rate_sens_matrix_normalized=   zeros(N_iter,length(alpha_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(alpha_row));
@@ -36,9 +36,9 @@ for ii=1:N_iter
         rate_dp_matrix(ii,jj)           =rate_dp;
         N_SAR_dp_matrix(ii,jj)          =N_SAR_dp;
         comm_rate_dp_matrix(ii,jj)      =comm_rate_dp;
-        % rate_heu_matrix (ii,jj)         =rate_heu;
-        % N_SAR_heu_matrix(ii,jj)         =N_SAR_heu;
-        % comm_rate_heu_matrix(ii,jj)     =comm_rate_heu;
+        rate_heu_matrix (ii,jj)         =rate_heu;
+        N_SAR_heu_matrix(ii,jj)         =N_SAR_heu;
+        comm_rate_heu_matrix(ii,jj)     =comm_rate_heu;
         rate_sens_matrix(ii,jj)         =rate_sens;
         N_SAR_sens_matrix(ii,jj)        =N_SAR_sens;
         comm_rate_sens_matrix(ii,jj)    =comm_rate_sens;
@@ -64,8 +64,8 @@ for ii=1:N_iter
 
         rate_dp_matrix_normalized(ii,jj)=       rate_dp_normalized;
         comm_rate_dp_matrix_normalized(ii,jj)=  comm_rate_dp_normalized;
-        % rate_heu_matrix_normalized(ii,jj)=      rate_heu_normalized;
-        % comm_rate_heu_matrix_normalized(ii,jj)= comm_rate_heu_normalized;
+        rate_heu_matrix_normalized(ii,jj)=      rate_heu_normalized;
+        comm_rate_heu_matrix_normalized(ii,jj)= comm_rate_heu_normalized;
         rate_sens_matrix_normalized(ii,jj)=     rate_sens_normalized;
         comm_rate_sens_matrix_normalized(ii,jj)=comm_rate_sens_normalized;
         rate_comm_matrix_normalized(ii,jj)=     rate_comm_normalized;
@@ -77,22 +77,22 @@ for ii=1:N_iter
 end
 %%
 mean_rate_dp=mean(rate_dp_matrix);
-% mean_rate_heu=mean(rate_heu_matrix);
+mean_rate_heu=mean(rate_heu_matrix);
 mean_rate_sens=mean(rate_sens_matrix);
 mean_rate_comm=mean(rate_comm_matrix);
 
 mean_rate_dp_normalized=mean(rate_dp_matrix_normalized);
-% mean_rate_heu_normalized=mean(rate_heu_matrix_normalized);
+mean_rate_heu_normalized=mean(rate_heu_matrix_normalized);
 mean_rate_sens_normalized=mean(rate_sens_matrix_normalized);
 mean_rate_comm_normalized=mean(rate_comm_matrix_normalized);
 
 mean_N_SAR_dp=mean(N_SAR_dp_matrix);
-% mean_N_SAR_heu=mean(N_SAR_heu_matrix);
+mean_N_SAR_heu=mean(N_SAR_heu_matrix);
 mean_N_SAR_sens=mean(N_SAR_sens_matrix);
 mean_N_SAR_comm=mean(N_SAR_comm_matrix);
 
 mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
-% mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
+mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
 %%
@@ -100,53 +100,53 @@ mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
 figure()
 plot(alpha_row, mean_rate_dp, '-o');
 hold on
-% semilogx(time_slot_max_row, mean_rate_heu, '-^');
+plot(alpha_row, mean_rate_heu, '-^');
 plot(alpha_row, mean_rate_sens, '-x');
 plot(alpha_row, mean_rate_comm, '-*');
 ylabel bits
 xlabel('times of average rate')
 grid on
-legend('DP(Proposed)', 'Sensing only', 'Communication only')
+legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
 title("Average performance on different alpha")
 
 
 figure()
 plot(alpha_row, mean_rate_dp_normalized, '-o');
 hold on
-% semilogx(alpha_row, mean_rate_heu_normalized);
+plot(alpha_row, mean_rate_heu_normalized, '-^');
 plot(alpha_row, mean_rate_sens_normalized, '-x');
 plot(alpha_row, mean_rate_comm_normalized, '-*');
 xlabel('times of average rate')
 grid on
-legend('DP(Proposed)', 'Sensing only', 'Communication only')
+legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
 title("Average normalized performance on different alpha")
 
 figure()
 plot(alpha_row, mean_N_SAR_dp, '-o');
 hold on
-% semilogx(alpha_row, mean_N_SAR_heu);
+plot(alpha_row, mean_N_SAR_heu, '-^');
 plot(alpha_row, mean_N_SAR_sens, '-x');
 plot(alpha_row, mean_N_SAR_comm, '-*');
 ylabel cells
 xlabel('times of average rate')
 grid on
-legend('DP(Proposed)', 'Sensing only', 'Communication only')
+legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
 title("Average SAR coverage on different alpha")
 
 figure()
 plot(alpha_row, mean_comm_rate_dp_normalized, '-o');
 hold on
-% semilogx(alpha_row, mean_comm_rate_heu_normalized);
+plot(alpha_row, mean_comm_rate_heu_normalized, '-^');
 plot(alpha_row, mean_comm_rate_sens_nomalized, '-x');
 plot(alpha_row, mean_comm_rate_comm_normalized, '-*');
 ylabel bits
 xlabel('times of average rate')
 grid on
-legend('DP(Proposed)', 'Sensing only', 'Communication only')
+legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
 title("Average communication performance on different alpha")
 
 %%
-save('single_different_alpha.mat')
+save('single_different_alpha2.mat')
 
 % assume cell_matrix is done
 
