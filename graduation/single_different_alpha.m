@@ -103,7 +103,7 @@ hold on
 plot(alpha_row, mean_rate_heu, '-^');
 plot(alpha_row, mean_rate_sens, '-x');
 plot(alpha_row, mean_rate_comm, '-*');
-ylabel bits
+ylabel('Total performance (bits)')
 xlabel('times of average rate')
 grid on
 legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
@@ -116,6 +116,7 @@ hold on
 plot(alpha_row, mean_rate_heu_normalized, '-^');
 plot(alpha_row, mean_rate_sens_normalized, '-x');
 plot(alpha_row, mean_rate_comm_normalized, '-*');
+ylabel('Total normalized performance')
 xlabel('times of average rate')
 grid on
 legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
@@ -127,7 +128,7 @@ hold on
 plot(alpha_row, mean_N_SAR_heu, '-^');
 plot(alpha_row, mean_N_SAR_sens, '-x');
 plot(alpha_row, mean_N_SAR_comm, '-*');
-ylabel cells
+ylabel('Coverage (cells)')
 xlabel('times of average rate')
 grid on
 legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
@@ -139,7 +140,7 @@ hold on
 plot(alpha_row, mean_comm_rate_heu_normalized, '-^');
 plot(alpha_row, mean_comm_rate_sens_nomalized, '-x');
 plot(alpha_row, mean_comm_rate_comm_normalized, '-*');
-ylabel bits
+ylabel('Normalized communication performance')
 xlabel('times of average rate')
 grid on
 legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
