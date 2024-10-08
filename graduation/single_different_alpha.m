@@ -1,7 +1,7 @@
 %% setting the test
-N_iter=2;
-N_Solver=4;
-alpha_row=[1 10 100 1000];
+N_iter=10;
+N_Solver=3;
+alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(alpha_row));
 comm_rate_dp_matrix     =zeros(N_iter, length(alpha_row));
@@ -75,6 +75,7 @@ for ii=1:N_iter
 
     end
 end
+%%
 mean_rate_dp=mean(rate_dp_matrix);
 % mean_rate_heu=mean(rate_heu_matrix);
 mean_rate_sens=mean(rate_sens_matrix);
@@ -91,17 +92,17 @@ mean_N_SAR_sens=mean(N_SAR_sens_matrix);
 mean_N_SAR_comm=mean(N_SAR_comm_matrix);
 
 mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
-mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
+% mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
 %%
 
 figure()
-semilogx(alpha_row, mean_rate_dp, '-o');
+plot(alpha_row, mean_rate_dp, '-o');
 hold on
 % semilogx(time_slot_max_row, mean_rate_heu, '-^');
-semilogx(alpha_row, mean_rate_sens, '-x');
-semilogx(alpha_row, mean_rate_comm, '-*');
+plot(alpha_row, mean_rate_sens, '-x');
+plot(alpha_row, mean_rate_comm, '-*');
 ylabel bits
 xlabel('times of average rate')
 grid on
@@ -110,22 +111,22 @@ title("Average performance on different alpha")
 
 
 figure()
-semilogx(alpha_row, mean_rate_dp_normalized);
+plot(alpha_row, mean_rate_dp_normalized, '-o');
 hold on
 % semilogx(alpha_row, mean_rate_heu_normalized);
-semilogx(alpha_row, mean_rate_sens_normalized);
-semilogx(alpha_row, mean_rate_comm_normalized);
+plot(alpha_row, mean_rate_sens_normalized, '-x');
+plot(alpha_row, mean_rate_comm_normalized, '-*');
 xlabel('times of average rate')
 grid on
 legend('DP(Proposed)', 'Sensing only', 'Communication only')
 title("Average normalized performance on different alpha")
 
 figure()
-semilogx(alpha_row, mean_N_SAR_dp);
+plot(alpha_row, mean_N_SAR_dp, '-o');
 hold on
 % semilogx(alpha_row, mean_N_SAR_heu);
-semilogx(alpha_row, mean_N_SAR_sens);
-semilogx(alpha_row, mean_N_SAR_comm);
+plot(alpha_row, mean_N_SAR_sens, '-x');
+plot(alpha_row, mean_N_SAR_comm, '-*');
 ylabel cells
 xlabel('times of average rate')
 grid on
@@ -133,18 +134,18 @@ legend('DP(Proposed)', 'Sensing only', 'Communication only')
 title("Average SAR coverage on different alpha")
 
 figure()
-semilogx(alpha_row, mean_comm_rate_dp_normalized);
+plot(alpha_row, mean_comm_rate_dp_normalized, '-o');
 hold on
 % semilogx(alpha_row, mean_comm_rate_heu_normalized);
-semilogx(alpha_row, mean_comm_rate_sens_nomalized);
-semilogx(alpha_row, mean_comm_rate_comm_normalized);
+plot(alpha_row, mean_comm_rate_sens_nomalized, '-x');
+plot(alpha_row, mean_comm_rate_comm_normalized, '-*');
 ylabel bits
 xlabel('times of average rate')
 grid on
 legend('DP(Proposed)', 'Sensing only', 'Communication only')
 title("Average communication performance on different alpha")
 
-
+%%
 save('single_different_alpha.mat')
 
 % assume cell_matrix is done

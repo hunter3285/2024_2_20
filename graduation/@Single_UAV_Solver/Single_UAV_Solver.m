@@ -105,7 +105,7 @@ classdef Single_UAV_Solver < handle
             obj.N_azi=round(obj.cell_side/obj.vr/obj.pri);
             obj.N_azi= obj.N_azi-mod(obj.N_azi, obj.N_range_cell);
             obj.vr= obj.cell_side/ obj.N_azi/ obj.pri; % actual result
-            obj.time_slot_max=150;
+            obj.time_slot_max=70;
             % if direction==north_south
             %     v=[0;vr;0];
             %     UAV_pos_ini=[-distance;0;H];
