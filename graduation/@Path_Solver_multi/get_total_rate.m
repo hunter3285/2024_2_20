@@ -78,5 +78,7 @@ for ii=1:N_UAV
     end
 end
 n_grid_total=sum(visited_matrix_2.*fixed_sensing_matrix_2, 'all')+sum(visited_matrix.*fixed_sensing_matrix, 'all');
+obj.n_grid_total=n_grid_total;
+obj.comm_rate_total=rate;
 rate=rate+n_grid_total*mean_rate;
 end

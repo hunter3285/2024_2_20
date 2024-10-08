@@ -18,6 +18,8 @@ classdef Path_Solver_multi < handle
         % but these matrices are the from the setting of the original problem
         % e.g., some cells we don't want to visit
         N_max=15;
+        n_grid_total;
+        comm_rate_total;
     end
     methods
         all_step = eliminate_same_steps(obj, step_with_time_slot)
