@@ -23,10 +23,10 @@ rate_sens_matrix_normalized=        zeros(N_iter,length(time_slot_max_row));
 comm_rate_sens_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(time_slot_max_row));
 comm_rate_comm_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
-
+%%
 
 for ii=1:N_iter
-    for jj=1:length(time_slot_max_row)
+    for jj=4:length(time_slot_max_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
             = test_multiple_UAV_time(time_slot_max_row(jj));
@@ -143,9 +143,9 @@ ylabel('Normalized communication performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
+%%
 
-
-save('multiple_different_time.mat')
+save('multiple_different_time2.mat')
 
 % assume cell_matrix is done
 
