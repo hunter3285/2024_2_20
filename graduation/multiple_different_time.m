@@ -95,6 +95,10 @@ mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
 % mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
+
+mean_comm_rate_dp=mean(comm_rate_dp_matrix);
+mean_comm_rate_sens=mean(comm_rate_sens_matrix);
+mean_comm_rate_comm=mean(comm_rate_comm_matrix);
 %%
 figure()
 plot(time_slot_max_row, mean_rate_dp, '-o');
@@ -140,6 +144,18 @@ plot(time_slot_max_row, mean_comm_rate_sens_nomalized, '-x');
 plot(time_slot_max_row, mean_comm_rate_comm_normalized, '-*');
 xlabel('Time limit (Time slots)')
 ylabel('Normalized communication performance')
+grid on
+legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
+title("Average communiation performance on different time limit")
+
+figure()
+plot(time_slot_max_row, mean_comm_rate_dp, '-o');
+hold on
+% plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
+plot(time_slot_max_row, mean_comm_rate_sens, '-x');
+plot(time_slot_max_row, mean_comm_rate_comm, '-*');
+xlabel('Time limit (Time slots)')
+ylabel('Communication performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
