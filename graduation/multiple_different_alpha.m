@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=2;
+N_iter=5;
 N_Solver=4;
 alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
@@ -23,7 +23,7 @@ rate_sens_matrix_normalized=        zeros(N_iter,length(alpha_row));
 comm_rate_sens_matrix_normalized=   zeros(N_iter,length(alpha_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(alpha_row));
 comm_rate_comm_matrix_normalized=   zeros(N_iter,length(alpha_row));
-
+%%
 
 for ii=1:N_iter
     for jj=1:length(alpha_row)
@@ -75,6 +75,7 @@ for ii=1:N_iter
 
     end
 end
+%%
 mean_rate_dp=mean(rate_dp_matrix);
 % mean_rate_heu=mean(rate_heu_matrix);
 mean_rate_sens=mean(rate_sens_matrix);
@@ -95,6 +96,10 @@ mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
 % mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
+
+mean_comm_rate_dp=mean(comm_rate_dp_matrix);
+mean_comm_rate_sens=mean(comm_rate_sens_matrix);
+mean_comm_rate_comm=mean(comm_rate_comm_matrix);
 %%
 figure()
 plot(alpha_row, mean_rate_dp, '-o');
@@ -103,10 +108,10 @@ hold on
 plot(alpha_row, mean_rate_sens, '-x');
 plot(alpha_row, mean_rate_comm, '-*');
 ylabel('Total performance (bits)')
-xlabel('Time limit (Time slots)')
+xlabel('alpha (times of average rate)')
 grid on
 legend('DP(Proposed)', 'Sensing only', 'Communication only')
-title("Average performance on different time limit")
+title("Average performance on different alpha")
 
 figure()
 plot(alpha_row, mean_rate_dp_normalized, '-o');
@@ -114,11 +119,11 @@ hold on
 % plot(time_slot_max_row, mean_rate_heu_normalized, '-^');
 plot(alpha_row, mean_rate_sens_normalized, '-x');
 plot(alpha_row, mean_rate_comm_normalized, '-*');
-xlabel('Time limit (Time slots)')
+xlabel('alpha (times of average rate)')
 ylabel('Total normalized performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-title("Average normalized performance on different time limit")
+title("Average normalized performance on different alpha")
 
 figure()
 plot(alpha_row, mean_N_SAR_dp, '--o');
@@ -127,7 +132,7 @@ hold on
 plot(alpha_row, mean_N_SAR_sens, '--x');
 plot(alpha_row, mean_N_SAR_comm, '--*');
 ylabel('Coverage (cells)')
-xlabel('Time limit (Time slots)')
+xlabel('alpha (times of average rate)')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average SAR coverage on different time limit")
@@ -138,14 +143,26 @@ hold on
 % plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
 plot(alpha_row, mean_comm_rate_sens_nomalized, '-x');
 plot(alpha_row, mean_comm_rate_comm_normalized, '-*');
-xlabel('Time limit (Time slots)')
+xlabel('alpha (times of average rate)')
 ylabel('Normalized communication performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-title("Average communiation performance on different time limit")
+title("Average communiation performance on different alpha")
 
+figure()
+plot(alpha_row, mean_comm_rate_dp, '-o');
+hold on
+% plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
+plot(alpha_row, mean_comm_rate_sens, '-x');
+plot(alpha_row, mean_comm_rate_comm, '-*');
+xlabel('alpha (times of average rate)')
+ylabel('Communication performance')
+grid on
+legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
+title("Average communiation performance on different alpha")
+%%
 
-save('multiple_different_time.mat')
+save('multiple_different_alpha2.mat')
 
 % assume cell_matrix is done
 

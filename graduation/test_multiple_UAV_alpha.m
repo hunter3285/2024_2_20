@@ -7,7 +7,7 @@ m.mean_rate=m.mean_rate/40*alpha;
 % /40 is because the mean rate is multiplied by 40 in the file
 % @Multiple_UAV_Solver/build_cells.m
 disp(['Now alpha is ', num2str(alpha)])
-m.initialize_DP_Solver();
+m.initialize_DP_multi_Solver();
 
 
 
