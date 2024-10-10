@@ -132,8 +132,8 @@ obj.coef_vec_cell_matrix=coef_vec_cell_matrix;
 obj.total_users=total_users;
 obj.N_user_matrix=N_users;
 obj.all_rate_matrix=all_rate_matrix;
-obj.mean_rate=mean(all_rate_matrix, 'all')*40;
-disp('mean rate is 40 times larger (default)')
+obj.mean_rate=mean(all_rate_matrix, 'all')*20;
+disp('mean rate is 20 times larger (default)')
 obj.N_max_user=max(N_users,[], 'all');
 % save('cell_matrix_class.mat', "cell_matrix")
 end
