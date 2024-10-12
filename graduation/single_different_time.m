@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=10;
+N_iter=50;
 N_Solver=4;
 time_slot_max_row=[40 80 120 160 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
@@ -23,7 +23,7 @@ rate_sens_matrix_normalized=        zeros(N_iter,length(time_slot_max_row));
 comm_rate_sens_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(time_slot_max_row));
 comm_rate_comm_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
-
+tic;
 
 for ii=1:N_iter
     for jj=1:length(time_slot_max_row)
@@ -142,9 +142,10 @@ grid on
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average communiation performance on different time limit")
+toc;
 %%
 
-save('single_different_time2.mat')
+save('single_different_time50.mat')
 
 % assume cell_matrix is done
 
