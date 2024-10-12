@@ -58,7 +58,7 @@ plot(time_slot_max_row, mean_rate_comm, '-*');
 ylabel('Total performance (bits)')
 xlabel('Time limit (Time slots)')
 grid on
-legend('DP(Proposed)', 'Sensing only', 'Communication only')
+legend('DP(Proposed)', 'DP for sensing only', 'DP for communication only')
 % title("Average performance on different time limit")
 
 figure()

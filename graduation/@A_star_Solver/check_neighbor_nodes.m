@@ -18,10 +18,10 @@ direction_straight=direction;
 node_straight=obj.find_node(x_straight, y_straight, direction_straight);
 node_right=obj.find_node(x_straight, y_straight, direction_right);
 node_left=obj.find_node(x_straight, y_straight, direction_left);
+% Notice: the difference between nodes is only direction
 
 
-
-if ~isempty(node_straight) % all the node exist
+if ~isempty(node_straight)
     spent_time_straight=time+1;
     spent_time_right=time+obj.turn_cost_right;
     spent_time_left=time+obj.turn_cost_left;
