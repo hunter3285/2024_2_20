@@ -11,6 +11,9 @@ classdef Path_Solver < handle
         turn_cost_left;
         all_step;
         all_step_with_time;
+        start_direction;
+        finish;
+        finish_direction;
         power_vec;
         n_grid;
         mean_rate;
@@ -52,6 +55,8 @@ classdef Path_Solver < handle
         current_direction;
         current_time;
         N_max_pow_path=10;
+
+        
     end
     methods
         function obj=Path_Solver()

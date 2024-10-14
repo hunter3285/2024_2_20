@@ -58,11 +58,12 @@ classdef Single_UAV_Solver < handle
         
         % algorithms (path solvers)
         Solver_row; % default path solver is DP
-        % 這裡原本想用一個row存各個Solver，但是沒辦法做到，因此Solver_row就是DP_Solver
+        % 這裡原本想用Solver_row存各個Solver，但是沒辦法做到，因此Solver_row就是DP_Solver
         N_Solver=1; % number of algorithms
         heuristic_solver;
         dp_solver_communication;
         dp_solver_sensing;
+
 
         % unused parameters
         total_users;
@@ -105,7 +106,7 @@ classdef Single_UAV_Solver < handle
             obj.N_azi=round(obj.cell_side/obj.vr/obj.pri);
             obj.N_azi= obj.N_azi-mod(obj.N_azi, obj.N_range_cell);
             obj.vr= obj.cell_side/ obj.N_azi/ obj.pri; % actual result
-            obj.time_slot_max=70;
+            obj.time_slot_max=40;
             % if direction==north_south
             %     v=[0;vr;0];
             %     UAV_pos_ini=[-distance;0;H];
@@ -119,10 +120,10 @@ classdef Single_UAV_Solver < handle
             obj.p_max_total= obj.time_slot_max* obj.p_mean;
             obj.power_initial_vec=ones(1, obj.time_slot_max)*obj.p_mean;
 
-            obj.N_cell_x=20;
-            obj.N_cell_y=20;
+            obj.N_cell_x=8;
+            obj.N_cell_y=8;
 
-            obj.start=[5;5];
+            obj.start=[2;2];
             obj.sensing_matrix=ones(obj.N_cell_x, obj.N_cell_y);
             obj.sensing_matrix_2=ones(obj.N_cell_x, obj.N_cell_y);
             obj.obstacle_matrix=zeros(obj.N_cell_x, obj.N_cell_y);

@@ -117,6 +117,9 @@ for ii=1:N_cell_x
         all_rate_matrix(ii,jj)=cell_matrix(ii,jj).sum_rate;
     end
 end
+
+
+
 for ii=1:N_cell_x
     for jj=1:N_cell_y
         cell_matrix(ii,jj).image=zeros(N_azi, N_azi);
