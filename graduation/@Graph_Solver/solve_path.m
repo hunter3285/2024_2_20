@@ -92,6 +92,6 @@ obj.solved_col=y;
 visited_matrix=obj.visited_matrix
 obj.all_step=all_step;
 obj.all_step_with_time=obj.StepWithTimeSlot;
-obj.sum_rate=obj.get_correct_rate;
-rate=obj.sum_rate
+obj.sum_rate=obj.get_correct_rate+obj.count_n_grid*obj.mean_rate;
+
 end

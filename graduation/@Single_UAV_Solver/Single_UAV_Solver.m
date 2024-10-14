@@ -123,7 +123,7 @@ classdef Single_UAV_Solver < handle
             obj.N_cell_x=8;
             obj.N_cell_y=8;
 
-            obj.start=[2;2];
+            obj.start=[5;5];
             obj.sensing_matrix=ones(obj.N_cell_x, obj.N_cell_y);
             obj.sensing_matrix_2=ones(obj.N_cell_x, obj.N_cell_y);
             obj.obstacle_matrix=zeros(obj.N_cell_x, obj.N_cell_y);
