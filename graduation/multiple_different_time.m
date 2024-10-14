@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=5;
+N_iter=50;
 N_Solver=4;
 time_slot_max_row=[40 80 120 160 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
@@ -24,7 +24,7 @@ comm_rate_sens_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(time_slot_max_row));
 comm_rate_comm_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 %%
-
+tic;
 for ii=1:N_iter
     for jj=1:length(time_slot_max_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, ...
@@ -99,6 +99,7 @@ mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
 mean_comm_rate_dp=mean(comm_rate_dp_matrix);
 mean_comm_rate_sens=mean(comm_rate_sens_matrix);
 mean_comm_rate_comm=mean(comm_rate_comm_matrix);
+toc;
 %%
 figure()
 plot(time_slot_max_row, mean_rate_dp, '-o');
@@ -161,7 +162,7 @@ legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
 %%
 
-save('multiple_different_time4.mat')
+save('multiple_different_time50.mat')
 
 % assume cell_matrix is done
 

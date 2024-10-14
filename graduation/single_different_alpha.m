@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=10;
+N_iter=50;
 N_Solver=3;
 alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
@@ -23,8 +23,8 @@ rate_sens_matrix_normalized=        zeros(N_iter,length(alpha_row));
 comm_rate_sens_matrix_normalized=   zeros(N_iter,length(alpha_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(alpha_row));
 comm_rate_comm_matrix_normalized=   zeros(N_iter,length(alpha_row));
-
-
+%%
+tic
 for ii=1:N_iter
     for jj=1:length(alpha_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
@@ -75,6 +75,7 @@ for ii=1:N_iter
 
     end
 end
+toc;
 %%
 mean_rate_dp=mean(rate_dp_matrix);
 mean_rate_heu=mean(rate_heu_matrix);
@@ -147,7 +148,7 @@ legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication
 title("Average communication performance on different alpha")
 
 %%
-save('single_different_alpha2.mat')
+save('single_different_alpha50.mat')
 
 % assume cell_matrix is done
 
