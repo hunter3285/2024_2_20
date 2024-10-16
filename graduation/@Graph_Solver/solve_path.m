@@ -8,7 +8,7 @@ T_max=obj.time_slot_max-1;
 
 start_node=obj.node_number_matrix(obj.start(1), obj.start(2), obj.start_direction+1);
 finish_node=obj.node_number_matrix(obj.finish(1), obj.finish(2), obj.finish_direction+1);
-cvx_begin 
+cvx_begin quiet
     variable x(n, n) binary 
     variable y(n, 1) binary
 %     variable z(n, 3) binary  % z 是輔助的二進制變數，用來限制 y 的值
@@ -89,9 +89,8 @@ end
 %     end
 % end
 obj.solved_col=y;
-visited_matrix=obj.visited_matrix
 obj.all_step=all_step;
 obj.all_step_with_time=obj.StepWithTimeSlot;
 obj.sum_rate=obj.get_correct_rate+obj.count_n_grid*obj.mean_rate;
-
+clear;
 end
