@@ -56,7 +56,7 @@ for ii=1:N_cell_x
             'SampleRate',fs,'PathDelays',[0 1e-9 7e-9 9e-9]...
             ,'AveragePathGains', [0,-5 -2 -7],'ChannelFiltering',false...
             ,'MaximumDopplerShift',5000000);
-        cell_matrix(ii,jj).channel=my_channel;
+        % cell_matrix(ii,jj).channel=my_channel;
         r=log_normal.random;
         % r=1;
         % coef_array=path_loss*r*abs(sum(my_channel(),2));%100*n_delay_taps->100*1
