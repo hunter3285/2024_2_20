@@ -54,7 +54,7 @@ ylabel('Total performance (bits)')
 xlabel('alpha (times of average rate)')
 grid on
 legend('DP(Proposed)', 'Sensing only', 'Communication only')
-% title("Average performance on different alpha")
+title("Average total performance on different alpha")
 
 figure()
 plot(alpha_row, mean_rate_dp_normalized, '-o');
@@ -66,7 +66,7 @@ xlabel('alpha (times of average rate)')
 ylabel('Total normalized performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average normalized performance on different alpha")
+title("Average normalized total performance on different alpha")
 
 figure()
 plot(alpha_row, mean_N_SAR_dp, '--o');
@@ -78,7 +78,7 @@ ylabel('Coverage (cells)')
 xlabel('alpha (times of average rate)')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average SAR coverage on different time limit")
+title("Average SAR coverage on different time limit")
 
 figure()
 plot(alpha_row, mean_comm_rate_dp_normalized, '-o');
@@ -90,7 +90,7 @@ xlabel('alpha (times of average rate)')
 ylabel('Normalized communication performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average normalized communiation performance on different alpha")
+title("Average normalized communiation performance on different alpha")
 
 figure()
 plot(alpha_row, mean_comm_rate_dp, '-o');
@@ -102,4 +102,4 @@ xlabel('alpha (times of average rate)')
 ylabel('Communication performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average communiation performance on different alpha")
+title("Average communiation performance on different alpha")

@@ -55,6 +55,25 @@ classdef Path_Solver < handle
         current_direction;
         current_time;
         N_max_pow_path=10;
+        UAV_start_end;
+        cell_matrix;
+        %% for storing imaging results
+        image_cell_matrix=image_cell;
+        middle_point_matrix;
+        cell_side;
+        distance;
+        T_PRI;
+        Ts;
+        N_azi;
+        H;
+        N;
+        M;
+        N_scatterer_matrix;
+        fc;
+        rho_r;
+        N_range_cell;
+        vr;
+        R0;
 
         
     end
@@ -79,5 +98,9 @@ classdef Path_Solver < handle
         save_power(obj)
         [x_right, y_right, x_straight, y_straight, x_left, y_left]=get_neighbor(obj)
         [visited_if_right, visited_if_straight, visited_if_left]=get_current_visited(obj)
+        get_UAV_start_end(obj)
+        get_image(obj)
+        middle_point=get_current_middle(obj, current_test_point_x, current_test_point_y)
+        plot_image(obj)
     end
 end

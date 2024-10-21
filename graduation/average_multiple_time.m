@@ -59,7 +59,7 @@ ylabel('Total performance (bits)')
 xlabel('Time limit (Time slots)')
 grid on
 legend('DP(Proposed)', 'DP for sensing only', 'DP for communication only')
-% title("Average performance on different time limit")
+title("Average total performance on different time limit")
 
 figure()
 plot(time_slot_max_row, mean_rate_dp_normalized, '-o');
@@ -71,7 +71,7 @@ xlabel('Time limit (Time slots)')
 ylabel('Total normalized performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average normalized performance on different time limit")
+title("Average normalized total performance on different time limit")
 
 figure()
 plot(time_slot_max_row, mean_N_SAR_dp, '--o');
@@ -83,7 +83,7 @@ ylabel('Coverage (cells)')
 xlabel('Time limit (Time slots)')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average SAR coverage on different time limit")
+title("Average SAR coverage on different time limit")
 
 figure()
 plot(time_slot_max_row, mean_comm_rate_dp_normalized, '-o');
@@ -95,7 +95,7 @@ xlabel('Time limit (Time slots)')
 ylabel('Normalized communication performance')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average communiation performance on different time limit")
+title("Average normalized communiation performance on different time limit")
 
 
 figure()
@@ -108,4 +108,4 @@ xlabel('Time limit (Time slots)')
 ylabel('Communication performance (bits)')
 grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
-% title("Average communiation performance on different time limit")
+title("Average communiation performance on different time limit")

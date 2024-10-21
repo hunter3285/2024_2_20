@@ -85,17 +85,69 @@ end
 %         points(:,ii)=[(ii-floor(N_points/2)-1)*rho_r;rho_r*2;0];
 %     end
 % end
-N_points=9;
+N_row=1;
+N_col=0;
+N_points=25*(N_row+N_col);
 points=zeros(3, N_points);
-points(:, 1)=[0;0;0];
-points(:, 2)=[rho_r;0;0];
-points(:, 3)=[-rho_r ;0;0];
-points(:, 4)=[0;rho_r;0];
-points(:, 5)=[rho_r;rho_r;0];
-points(:, 6)=[-rho_r ;rho_r;0];
-points(:, 7)=[0;-rho_r;0];
-points(:, 8)=[rho_r;-rho_r;0];
-points(:, 9)=[-rho_r ;-rho_r;0];
+% points(:, 1)=[0;0;0];
+% points(:, 2)=[rho_r;0;0];
+% points(:, 3)=[-rho_r ;0;0];
+% points(:, 4)=[0;rho_r;0];
+% points(:, 5)=[rho_r;rho_r;0];
+% points(:, 6)=[-rho_r ;rho_r;0];
+% points(:, 7)=[0;-rho_r;0];
+% points(:, 8)=[rho_r;-rho_r;0];
+% points(:, 9)=[-rho_r ;-rho_r;0];
+for ii=1:N_row
+    points(:, 1+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[0;0;0];
+    points(:, 2+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[rho_r;0;0];
+    points(:, 3+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[-rho_r ;0;0];
+    points(:, 4+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[0;rho_r;0];
+    points(:, 5+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[rho_r;rho_r;0];
+    points(:, 6+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[-rho_r ;rho_r;0];
+    points(:, 7+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[0;-rho_r;0];
+    points(:, 8+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[rho_r;-rho_r;0];
+    points(:, 9+9*(ii-1 ))=[3*rho_r; 0; 0]*(ii-1)+[-rho_r ;-rho_r;0];
+    points(:, 10+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[-rho_r;2*rho_r;0];
+    points(:, 11+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[0;2*rho_r;0];
+    points(:, 12+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[rho_r;2*rho_r;0];
+    points(:, 13+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[2*rho_r;2*rho_r;0];
+    points(:, 14+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[2*rho_r;rho_r;0];
+    points(:, 15+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[2*rho_r;0;0];
+    points(:, 16+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[-1*rho_r ;3*rho_r;0];
+    points(:, 17+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[0;3*rho_r;0];
+    points(:, 18+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[rho_r ;3*rho_r;0];
+    points(:, 19+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[2*rho_r ;-rho_r;0];
+    points(:, 20+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[2*rho_r ;3*rho_r;0];
+    points(:, 21+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[3*rho_r ;3*rho_r;0];
+    points(:, 22+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[3*rho_r ;2*rho_r;0];
+    points(:, 23+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[3*rho_r ;rho_r;0];
+    points(:, 24+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[3*rho_r ;0;0];
+    points(:, 25+9*(ii-1))=[3*rho_r; 0; 0]*(ii-1)+[3*rho_r ;-rho_r;0];
+
+
+end
+for ii=1:N_col
+    points(:, 1+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[0;0;0];
+    points(:, 2+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[rho_r;0;0];
+    points(:, 3+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[-rho_r ;0;0];
+    points(:, 4+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[0;rho_r;0];
+    points(:, 5+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[rho_r;rho_r;0];
+    points(:, 6+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[-rho_r ;rho_r;0];
+    points(:, 7+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[0;-rho_r;0];
+    points(:, 8+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[rho_r;-rho_r;0];
+    points(:, 9+9*(ii-1 +N_row))=[0;3*rho_r;  0]*(ii-1)+[-rho_r ;-rho_r;0];
+    points(:, 10+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[-rho_r;2*rho_r;0];
+    points(:, 11+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[0;2*rho_r;0];
+    points(:, 12+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[rho_r;2*rho_r;0];
+    points(:, 13+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[2*rho_r;2*rho_r;0];
+    points(:, 14+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[2*rho_r;rho_r;0];
+    points(:, 15+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[2*rho_r;0;0];
+    points(:, 16+9*(ii-1+N_row))=[0;3*rho_r;  0]*(ii-1)+[2*rho_r ;-rho_r;0]; 
+end
+
+
+
 
 for ii=1:N_cell_x
     for jj=1:N_cell_y
