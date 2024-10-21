@@ -101,6 +101,37 @@ classdef DP_Solver < Path_Solver
             obj.p_max_total=UAV_Solver_instance.p_max_total;
             obj.N_iter=0;
             obj.last_step_right_or_left=0;
+            obj.image_cell_matrix(obj.N_cell_x, obj.N_cell_y)=image_cell;
+%             obj.cell_matrix=UAV_Solver_instance.cell_matrix;
+            obj.middle_point_matrix=zeros(obj.N_cell_x, obj.N_cell_y, 3);
+            for ii=1:obj.N_cell_x
+                for jj=1:obj.N_cell_y
+                    obj.middle_point_matrix(ii,jj, :)=UAV_Solver_instance.cell_matrix(ii,jj).middle_point;
+                end
+            end
+            obj.cell_side=UAV_Solver_instance.cell_side;
+            obj.distance=UAV_Solver_instance.distance;
+            obj.T_PRI=UAV_Solver_instance.pri;
+            obj.Ts=UAV_Solver_instance.Ts;
+            obj.N_azi=UAV_Solver_instance.N_azi;
+            obj.H=UAV_Solver_instance.H;
+            obj.N=UAV_Solver_instance.N;
+            obj.M=UAV_Solver_instance.M;
+            obj.N_scatterer_matrix=zeros(obj.N_cell_x, obj.N_cell_y);
+            for ii=1:obj.N_cell_x
+                for jj=1:obj.N_cell_y
+                    obj.N_scatterer_matrix(ii,jj)=UAV_Solver_instance.cell_matrix(ii,jj).N_scatterer;
+                    obj.image_cell_matrix(ii,jj).scatterer_pos=UAV_Solver_instance.cell_matrix(ii,jj).scatterer_pos;
+                    obj.image_cell_matrix(ii,jj).set_N_azi(obj.N_azi);
+                end
+            end
+            obj.fc=UAV_Solver_instance.fc;
+            obj.rho_r=UAV_Solver_instance.rho_r;
+            obj.N_range_cell=UAV_Solver_instance.N_range_cell;
+            obj.vr=UAV_Solver_instance.vr;
+            obj.N_azi=UAV_Solver_instance.N_azi;
+            obj.R0=UAV_Solver_instance.R0;
+
         end
     end
 end

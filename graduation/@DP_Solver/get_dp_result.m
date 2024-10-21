@@ -108,7 +108,7 @@ obj.visited_indicator_matrix=visited_inidicator;
 obj.visited_indicator_matrix_2=visited_indicator_2;
 obj.n_grid=n_grid;
 obj.rate_after_power_opt=[];
-
+obj.get_UAV_start_end;
 
 
 end

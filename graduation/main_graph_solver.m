@@ -21,6 +21,7 @@ N_iter=100;
 results=zeros(N_iter,6);
 dp_larger=0;
 graph_larger=0;
+
 for ii=1:N_iter
     [rate_dp, N_SAR_dp, comm_rate_dp, rate_graph, N_SAR_graph, comm_rate_graph, d, g]=test_graph();
     results(ii,:)=[rate_dp, N_SAR_dp, comm_rate_dp, rate_graph, N_SAR_graph, comm_rate_graph];
