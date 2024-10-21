@@ -1,11 +1,15 @@
 function [rate, N_SAR, rate_comm]=get_BCD_result(obj)
 [sum_rate_optimal_dp, ~, ~, ~,  ~, ~, ~, n_grid, ~]=obj.get_dp_result;
 mean_rate=obj.mean_rate;
-error_get_BCD_result=obj.get_correct_rate()+n_grid*mean_rate-sum_rate_optimal_dp
+
+error_get_BCD_result=obj.get_correct_rate()+n_grid*mean_rate-sum_rate_optimal_dp;
+if abs(error_get_BCD_result)>1e-3
+    error_get_BCD_result
+end
 obj.power_parameters();
 obj.power_optimization();
 
-gain_after_power_get_BCD_result=obj.rate_after_power_opt+n_grid*mean_rate-sum_rate_optimal_dp
+gain_after_power_get_BCD_result=obj.rate_after_power_opt+n_grid*mean_rate-sum_rate_optimal_dp;
 
 obj.record_result();
 obj.clear_dp();

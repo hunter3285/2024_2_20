@@ -23,14 +23,19 @@ dp_larger=0;
 graph_larger=0;
 
 for ii=1:N_iter
-    [rate_dp, N_SAR_dp, comm_rate_dp, rate_graph, N_SAR_graph, comm_rate_graph]=test_graph();
+    [rate_dp, N_SAR_dp, comm_rate_dp, rate_graph, N_SAR_graph, comm_rate_graph, d, g]=test_graph();
     results(ii,:)=[rate_dp, N_SAR_dp, comm_rate_dp, rate_graph, N_SAR_graph, comm_rate_graph];
     if abs(rate_dp-rate_graph)>1e-4
          dp_larger=dp_larger+(rate_dp>rate_graph);
          graph_larger=graph_larger+(rate_graph>rate_dp);
     end
+    if rate_graph-rate_dp>1e-4
+        disp('not ended')
+        break;
+    end
 end
-
+dp_larger
+graph_larger
 
 
 
