@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=10;
+N_iter=2;
 N_Solver=4;
 time_slot_max_row=[40 80 120 160 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
@@ -26,10 +26,11 @@ comm_rate_comm_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 tic;
 %%
 for ii=1:N_iter
+    s=Single_UAV_Solver;
     for jj=1:length(time_slot_max_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
-            = test_single_UAV_time(time_slot_max_row(jj));
+            = test_single_UAV_time(time_slot_max_row(jj), s);
 
 
 

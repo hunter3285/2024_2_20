@@ -1,8 +1,10 @@
 function [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
-    rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]=test_single_UAV_time(time_slot_max)
+    rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]=test_single_UAV_time(time_slot_max, Single_UAV_Solver_inst)
+
+% 輸入Single_UAV_Solver_inst可以確保每次的地圖都一樣，只有改變Single_UAV_Solver_inst才會改地圖
+s=Single_UAV_Solver_inst;
 
 
-s=Single_UAV_Solver;
 s.time_slot_max=time_slot_max;
 s.power_initial_vec=s.p_mean*ones(1, time_slot_max);
 s.initialize_DP_Solver();

@@ -59,7 +59,7 @@ grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 
 figure()
-plot(time_slot_max_row, mean_comm_rate_dp+[0,0,5,0,0], '-o');
+plot(time_slot_max_row, mean_comm_rate_dp, '-o');
 hold on
 plot(time_slot_max_row, mean_comm_rate_heu, '-^');
 plot(time_slot_max_row, mean_comm_rate_sens, '-x');
