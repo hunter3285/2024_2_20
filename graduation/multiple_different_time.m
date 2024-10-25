@@ -1,7 +1,7 @@
 %% setting the test
-N_iter=50;
+N_iter=10;
 N_Solver=4;
-time_slot_max_row=[40 80 120 160 200];
+time_slot_max_row=[30 60 90 120 150 180];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(time_slot_max_row));
 comm_rate_dp_matrix     =zeros(N_iter, length(time_slot_max_row));
@@ -162,7 +162,7 @@ legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
 %%
 
-save('multiple_different_time50.mat')
+save('multiple_different_time10.mat')
 
 % assume cell_matrix is done
 

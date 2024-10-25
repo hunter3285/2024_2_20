@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=50;
+N_iter=10;
 N_Solver=3;
 alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
@@ -148,7 +148,7 @@ legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication
 title("Average normalized communication performance on different alpha")
 
 %%
-save('single_different_alpha50.mat')
+save('single_different_alpha10.mat')
 
 % assume cell_matrix is done
 

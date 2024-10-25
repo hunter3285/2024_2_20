@@ -22,11 +22,15 @@ for ii=1:N_cell_x
     end
 end
 %% setup for the users and profit
+target_number_of_users=600;
+N_user_matrix=rand(N_cell_x, N_cell_y);
+N_user_matrix=N_user_matrix./sum(N_user_matrix, 'all')*target_number_of_users;
+N_user_matrix=round(N_user_matrix);
+%%
 N_users=zeros(N_cell_x, N_cell_y);
 for ii=1:N_cell_x
     for jj=1:N_cell_y
-        N_users(ii,jj)=round(rand()*10);    % mean is 5 users
-        N_users(ii,jj)=round(rand()*10);
+        N_users(ii,jj)=N_user_matrix(ii,jj);
         for kk=1:N_users(ii,jj)
             dx=(randn()-0.5)*cell_side;
             dy=(randn()-0.5)*cell_side;
@@ -52,10 +56,10 @@ path_loss=alpha_0/R0^2;
 
 for ii=1:N_cell_x
     for jj=1:N_cell_y
-        my_channel=comm.RicianChannel(...
-            'SampleRate',fs,'PathDelays',[0 1e-9 7e-9 9e-9]...
-            ,'AveragePathGains', [0,-5 -2 -7],'ChannelFiltering',false...
-            ,'MaximumDopplerShift',5000000);
+        % my_channel=comm.RicianChannel(...
+        %     'SampleRate',fs,'PathDelays',[0 1e-9 7e-9 9e-9]...
+        %     ,'AveragePathGains', [0,-5 -2 -7],'ChannelFiltering',false...
+        %     ,'MaximumDopplerShift',5000000);
         % cell_matrix(ii,jj).channel=my_channel;
         r=log_normal.random;
         % r=1;

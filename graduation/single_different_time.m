@@ -1,5 +1,5 @@
 %% setting the test
-N_iter=50;
+N_iter=10;
 N_Solver=4;
 time_slot_max_row=[40 80 120 160 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
@@ -24,7 +24,7 @@ comm_rate_sens_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 rate_comm_matrix_normalized=        zeros(N_iter,length(time_slot_max_row));
 comm_rate_comm_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 tic;
-
+%%
 for ii=1:N_iter
     for jj=1:length(time_slot_max_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
@@ -75,6 +75,8 @@ for ii=1:N_iter
 
     end
 end
+% toc;
+%%
 mean_rate_dp=mean(rate_dp_matrix);
 mean_rate_heu=mean(rate_heu_matrix);
 mean_rate_sens=mean(rate_sens_matrix);
@@ -95,6 +97,11 @@ mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
 mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
+
+mean_comm_rate_dp=mean(comm_rate_dp_matrix);
+mean_comm_rate_sens=mean(comm_rate_sens_matrix);
+mean_comm_rate_comm=mean(comm_rate_comm_matrix);
+mean_comm_rate_heu=mean(comm_rate_heu_matrix);
 %%
 figure()
 plot(time_slot_max_row, mean_rate_dp, '-o');
@@ -131,21 +138,24 @@ grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average SAR coverage on different time limit")
 
+
+
+
 figure()
-plot(time_slot_max_row, mean_comm_rate_dp_normalized, '-o');
+plot(time_slot_max_row, mean_comm_rate_dp, '-o');
 hold on
-plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
-plot(time_slot_max_row, mean_comm_rate_sens_nomalized, '-x');
-plot(time_slot_max_row, mean_comm_rate_comm_normalized, '-*');
-xlabel('time slot')
-grid on
+plot(time_slot_max_row, mean_comm_rate_heu, '-^');
+plot(time_slot_max_row, mean_comm_rate_sens, '-x');
+plot(time_slot_max_row, mean_comm_rate_comm, '-*');
+xlabel('Time limit (Time slots)')
+ylabel('Normalized communication performance')
+title("Average communication capacity on different time limit")
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
-title("Average communiation performance on different time limit")
-toc;
+
 %%
 
-save('single_different_time50.mat')
+save('single_different_time10.mat')
 
 % assume cell_matrix is done
 
