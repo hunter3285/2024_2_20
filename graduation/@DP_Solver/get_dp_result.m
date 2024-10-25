@@ -10,7 +10,6 @@ function [sum_rate_optimal_dp, visited_dp, visited_inidicator, visited_indicator
 % tic;
 [sum_rate_optimal_dp, max_index]=obj.dp_main();
 % toc;
-max_index
 %%
 % dp_matrix=dp_inst.dp_matrix;
 visited_reverse=zeros(obj.N_cell_x, obj.N_cell_y);

@@ -1,4 +1,5 @@
 %% setting the test
+clc;
 N_iter=2;
 N_Solver=4;
 time_slot_max_row=[40 80 120 160 200];
