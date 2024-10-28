@@ -1,8 +1,10 @@
 %% setting the test
 clc;
-N_iter=2;
+close all;
+clear;
+N_iter=10;
 N_Solver=4;
-time_slot_max_row=[40 80 120 160 200];
+time_slot_max_row=[50 100 150 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(time_slot_max_row));
 comm_rate_dp_matrix     =zeros(N_iter, length(time_slot_max_row));
@@ -150,7 +152,7 @@ plot(time_slot_max_row, mean_comm_rate_heu, '-^');
 plot(time_slot_max_row, mean_comm_rate_sens, '-x');
 plot(time_slot_max_row, mean_comm_rate_comm, '-*');
 xlabel('Time limit (Time slots)')
-ylabel('Normalized communication performance')
+ylabel('Communication performance')
 title("Average communication capacity on different time limit")
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')

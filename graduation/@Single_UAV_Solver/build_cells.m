@@ -47,13 +47,14 @@ total_users=sum(N_users, 'all');
 
 %% setup for the channel in each cell
 log_normal=makedist('Lognormal');
-log_normal.sigma=2;
+log_normal.sigma=2.5;
 GTx=100;
 GRx=100;
 alpha_0=lambda^2/(4*pi)^2*GTx*GRx;
 path_loss=alpha_0/R0^2;
-
-
+large_scale_fading=log_normal.random(obj.N_cell_x, obj.N_cell_y);
+large_scale_fading_mean=exp(1);
+large_scale_fading=large_scale_fading/mean(large_scale_fading, "all")*large_scale_fading_mean;
 for ii=1:N_cell_x
     for jj=1:N_cell_y
         % my_channel=comm.RicianChannel(...
@@ -61,7 +62,8 @@ for ii=1:N_cell_x
         %     ,'AveragePathGains', [0,-5 -2 -7],'ChannelFiltering',false...
         %     ,'MaximumDopplerShift',5000000);
         % cell_matrix(ii,jj).channel=my_channel;
-        r=log_normal.random;
+        r=large_scale_fading(ii,jj);
+        % r=log_normal.random;
         % r=1;
         % coef_array=path_loss*r*abs(sum(my_channel(),2));%100*n_delay_taps->100*1
         coef_vec=path_loss*r*ones(100,1);
@@ -191,8 +193,10 @@ obj.coef_vec_cell_matrix=coef_vec_cell_matrix;
 obj.total_users=total_users;
 obj.N_user_matrix=N_users;
 obj.all_rate_matrix=all_rate_matrix;
-obj.mean_rate=mean(all_rate_matrix, 'all')*10;
-disp('mean rate is 10 times larger in build_cells (default)')
+alpha_multiplier=25;
+obj.mean_rate=mean(all_rate_matrix, 'all')*alpha_multiplier;
+disp(['mean rate is ', num2str(alpha_multiplier),' times larger in build_cells (default)'])
+obj.alpha_multiplier=alpha_multiplier;
 obj.N_max_user=max(N_users,[], 'all');
 
 end

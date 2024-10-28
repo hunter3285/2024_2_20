@@ -15,7 +15,9 @@ classdef DP_Solver_multi < Path_Solver_multi
 %         N_max=15;
 %         n_grid_total;
 %         comm_rate_total
+%         fixed_coef_vec_cell_matrix
         total_sum_rate_row; % for recording sum_rate at each iteration
+        
         
     end
     methods
@@ -42,6 +44,14 @@ classdef DP_Solver_multi < Path_Solver_multi
             obj.mean_rate=UAV_Solver_instance.mean_rate;
             obj.fixed_sensing_matrix=ones(obj.N_cell_x, obj.N_cell_y);
             obj.fixed_sensing_matrix_2=obj.fixed_sensing_matrix;
+            N_max_user=UAV_Solver_instance.N_max_user;
+            obj.fixed_coef_vec_cell_matrix=zeros(obj.N_cell_x, obj.N_cell_y, N_max_user);
+            for ii=1:obj.N_cell_x
+                for jj=obj.N_cell_y
+                    l=length(UAV_Solver_instance.coef_vec_cell_matrix(ii,jj).coef_array);
+                    obj.fixed_coef_vec_cell_matrix(ii,jj,1:l)=UAV_Solver_instance.coef_vec_cell_matrix(ii,jj).coef_array(1:l);
+                end
+            end
         end
  
     end

@@ -20,6 +20,7 @@ classdef Path_Solver_multi < handle
         N_max=15;
         n_grid_total;
         comm_rate_total;
+        fixed_coef_vec_cell_matrix;
     end
     methods
         all_step = eliminate_same_steps(obj, step_with_time_slot)

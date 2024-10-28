@@ -1,4 +1,7 @@
 %% setting the test
+close all;
+clear;
+clc;
 N_iter=10;
 N_Solver=3;
 alpha_row=[10 30 50 70 90];
@@ -26,10 +29,11 @@ comm_rate_comm_matrix_normalized=   zeros(N_iter,length(alpha_row));
 %%
 tic
 for ii=1:N_iter
+    s=Single_UAV_Solver;
     for jj=1:length(alpha_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
-            = test_single_UAV_alpha(alpha_row(jj));
+            = test_single_UAV_alpha(alpha_row(jj), s);
 
 
 
@@ -96,6 +100,11 @@ mean_comm_rate_dp_normalized=mean(comm_rate_dp_matrix_normalized);
 mean_comm_rate_heu_normalized=mean(comm_rate_heu_matrix_normalized);
 mean_comm_rate_sens_nomalized=mean(comm_rate_sens_matrix_normalized);
 mean_comm_rate_comm_normalized=mean(comm_rate_comm_matrix_normalized);
+
+mean_comm_rate_dp=mean(comm_rate_dp_matrix);
+mean_comm_rate_heu=mean(comm_rate_heu_matrix);
+mean_comm_rate_sens=mean(comm_rate_sens_matrix);
+mean_comm_rate_comm=mean(comm_rate_comm_matrix);
 %%
 
 figure()
@@ -136,16 +145,16 @@ legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication
 title("Average SAR coverage on different alpha")
 
 figure()
-plot(alpha_row, mean_comm_rate_dp_normalized, '-o');
+plot(alpha_row, mean_comm_rate_dp, '-o');
 hold on
-plot(alpha_row, mean_comm_rate_heu_normalized, '-^');
-plot(alpha_row, mean_comm_rate_sens_nomalized, '-x');
-plot(alpha_row, mean_comm_rate_comm_normalized, '-*');
-ylabel('Normalized communication performance')
+plot(alpha_row, mean_comm_rate_heu, '-^');
+plot(alpha_row, mean_comm_rate_sens, '-x');
+plot(alpha_row, mean_comm_rate_comm, '-*');
+ylabel('Communication performance')
 xlabel('alpha (times of average rate)')
 grid on
 legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication only')
-title("Average normalized communication performance on different alpha")
+title("Average communication performance on different alpha")
 
 %%
 save('single_different_alpha10.mat')

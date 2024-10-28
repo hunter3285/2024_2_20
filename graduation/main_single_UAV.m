@@ -18,9 +18,9 @@ error_d=d.get_correct_rate()+n_grid_class*mean_rate_class-sum_rate_optimal_dp_cl
 % %%
 d.power_parameters();
 d.power_optimization();
-%%
+
 gain_after_power_opt_class=d.rate_after_power_opt+n_grid_class*mean_rate_class-sum_rate_optimal_dp_class
-%%
+
 d.record_result();
 d.clear_dp();
 [sum_rate_optimal_dp_class, visited_dp_class, visited_dp_class_temp, visited_dp_class_temp_2,  all_step_dp_class, ~, ~, n_grid_class, ...
@@ -47,24 +47,25 @@ d.BCD_for_pow_path();
 % error_power=h.get_correct_rate()-h.rate_after_power_opt
 %% communication only
 
-% s.initialize_DP_comm_Solver;
-% c=s.dp_solver_communication;
-% [sum_rate_comm, visited_dp_comm, visited_inidicator_comm, visited_indicator_comm_2,  all_step_dp_comm, ~, ~, n_grid_comm, ...
-%     rate_vec_comm]=c.get_dp_result;
-% % %%
-% 
-% mean_rate_class=s.mean_rate;
-% error_c=c.get_correct_rate()+n_grid_comm*mean_rate_class-sum_rate_comm
-%% sensing centric
-
-% s.initalize_DP_sens_Solver;
-% sens=s.dp_solver_sensing;
-% [sum_rate_sens, visited_dp_sens, visited_inidicator_sens, visited_indicator_sens_2,  all_step_dp_sens, ~, ~, n_grid_sens, ...
-%     rate_vec_sens]=sens.get_dp_result;
+s.initialize_DP_comm_Solver;
+c=s.dp_solver_communication;
+[sum_rate_comm, visited_dp_comm, visited_inidicator_comm, visited_indicator_comm_2,  all_step_dp_comm, ~, ~, n_grid_comm, ...
+    rate_vec_comm]=c.get_dp_result;
 % %%
-
-% mean_rate_class=sens.mean_rate;
-% error_sens=sens.get_correct_rate()+n_grid_sens*mean_rate_class-sum_rate_sens
+n_grid_comm
+mean_rate_class=s.mean_rate;
+error_c=c.get_correct_rate()+n_grid_comm*mean_rate_class-sum_rate_comm
+c.power_parameters;
+c.power_optimization;
+%% sensing centric
+s.initalize_DP_sens_Solver;
+sens=s.dp_solver_sensing;
+[sum_rate_sens, visited_dp_sens, visited_inidicator_sens, visited_indicator_sens_2,  all_step_dp_sens, ~, ~, n_grid_sens, ...
+    rate_vec_sens]=sens.get_dp_result;
+sens.power_parameters;
+sens.power_optimization;
+%% mean_rate_class=sens.mean_rate;
+error_sens=sens.get_correct_rate()+n_grid_sens*mean_rate_class-sum_rate_sens
 
 %% 
 % a=A_star_Solver(s);

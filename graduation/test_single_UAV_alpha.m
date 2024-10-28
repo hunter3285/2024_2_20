@@ -1,10 +1,12 @@
 function [rate_dp, N_SAR_dp, comm_rate_dp, rate_heu, N_SAR_heu, comm_rate_heu, ...
-    rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]=test_single_UAV_alpha(alpha)
+    rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]=test_single_UAV_alpha(alpha, Single_UAV_Solver_instance)
+%%
 
-
-s=Single_UAV_Solver;
-s.mean_rate=s.mean_rate/20*alpha;
+s=Single_UAV_Solver_instance;
+%%
+s.mean_rate=s.mean_rate/s.alpha_multiplier*alpha;
 disp(['Now alpha is ', num2str(alpha)])
+s.alpha_multiplier=alpha;
 s.initialize_DP_Solver();
 %% test DP
 d=s.Solver_row(1);
@@ -59,7 +61,7 @@ sens=s.dp_solver_sensing;
 [sum_rate_sens, ~, ~, ~,  ~, ~, ~, n_grid_sens, ~]=sens.get_dp_result;
 
 error_sens=sens.get_correct_rate()+n_grid_sens*(sens.mean_rate)-sum_rate_sens
-
+sens.coef_vec_cell_matrix=d.coef_vec_cell_matrix;
 sens.power_parameters();
 sens.power_optimization();
 gain_after_power_opt_class=sens.rate_after_power_opt+n_grid_sens*(sens.mean_rate)-sum_rate_sens

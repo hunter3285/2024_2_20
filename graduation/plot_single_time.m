@@ -1,6 +1,6 @@
 clear all
 close all
-load('single_different_time50.mat')
+load('single_time10.mat')
 
 mean_comm_rate_dp=mean(comm_rate_dp_matrix);
 mean_comm_rate_sens=mean(comm_rate_sens_matrix);
@@ -14,7 +14,7 @@ figure()
 plot(time_slot_max_row, mean_rate_dp, '-o');
 hold on
 plot(time_slot_max_row, mean_rate_heu, '-^');
-plot(time_slot_max_row, mean_rate_sens, '-x');
+plot(time_slot_max_row, mean_rate_sens, 'r-x');
 plot(time_slot_max_row, mean_rate_comm, '-*');
 ylabel('Total performance (bits)')
 xlabel('Time limit (Time slots)')
@@ -26,7 +26,7 @@ figure()
 plot(time_slot_max_row, mean_rate_dp_normalized, '-o');
 hold on
 plot(time_slot_max_row, mean_rate_heu_normalized, '-^');
-plot(time_slot_max_row, mean_rate_sens_normalized, '-x');
+plot(time_slot_max_row, mean_rate_sens_normalized, 'r-x');
 plot(time_slot_max_row, mean_rate_comm_normalized, '-*');
 xlabel('Time limit (Time slots)')
 ylabel('Total normalized performance')
@@ -50,7 +50,7 @@ figure()
 plot(time_slot_max_row, mean_comm_rate_dp_normalized, '-o');
 hold on
 plot(time_slot_max_row, mean_comm_rate_heu_normalized, '-^');
-plot(time_slot_max_row, mean_comm_rate_sens_nomalized, '-x');
+plot(time_slot_max_row, mean_comm_rate_sens_nomalized, 'r-x');
 plot(time_slot_max_row, mean_comm_rate_comm_normalized, '-*');
 xlabel('Time limit (Time slots)')
 ylabel('Normalized communication performance')
@@ -62,7 +62,7 @@ figure()
 plot(time_slot_max_row, mean_comm_rate_dp, '-o');
 hold on
 plot(time_slot_max_row, mean_comm_rate_heu, '-^');
-plot(time_slot_max_row, mean_comm_rate_sens, '-x');
+plot(time_slot_max_row, mean_comm_rate_sens, 'r-x');
 plot(time_slot_max_row, mean_comm_rate_comm, '-*');
 xlabel('Time limit (Time slots)')
 ylabel('Normalized communication performance')

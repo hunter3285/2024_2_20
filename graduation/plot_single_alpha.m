@@ -1,6 +1,6 @@
 clear all
 close all
-load('single_different_alpha10.mat')
+load('single_alpha10.mat')
 
 mean_comm_rate_dp=mean(comm_rate_dp_matrix);
 mean_comm_rate_sens=mean(comm_rate_sens_matrix);

@@ -1,7 +1,10 @@
 %% setting the test
-N_iter=10;
+clear
+close all
+clc
+N_iter=2;
 N_Solver=4;
-time_slot_max_row=[30 60 90 120 150 180];
+time_slot_max_row=[50 100 150 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(time_slot_max_row));
 comm_rate_dp_matrix     =zeros(N_iter, length(time_slot_max_row));
@@ -26,10 +29,11 @@ comm_rate_comm_matrix_normalized=   zeros(N_iter,length(time_slot_max_row));
 %%
 tic;
 for ii=1:N_iter
+    m=Multiple_UAV_Solver();
     for jj=1:length(time_slot_max_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
-            = test_multiple_UAV_time(time_slot_max_row(jj));
+            = test_multiple_UAV_time(time_slot_max_row(jj), m);
 
 
 
@@ -161,8 +165,8 @@ grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
 %%
-
-save('multiple_different_time10.mat')
+clear m
+save('multiple_time2.mat')
 
 % assume cell_matrix is done
 

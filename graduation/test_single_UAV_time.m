@@ -59,7 +59,7 @@ rate_comm=comm_rate_comm+N_SAR_comm*mean_rate_class;
 s.initalize_DP_sens_Solver;
 sens=s.dp_solver_sensing;
 [sum_rate_sens, ~, ~, ~,  ~, ~, ~, n_grid_sens, ~]=sens.get_dp_result;
-
+sens.coef_vec_cell_matrix=c.coef_vec_cell_matrix;
 error_sens=sens.get_correct_rate()+n_grid_sens*(sens.mean_rate)-sum_rate_sens
 
 sens.power_parameters();

@@ -48,7 +48,9 @@ GTx=100;
 GRx=100;
 alpha_0=lambda^2/(4*pi)^2*GTx*GRx;
 path_loss=alpha_0/R0^2;
-
+large_scale_fading=log_normal.random(obj.N_cell_x, obj.N_cell_y);
+large_scale_fading_mean=exp(1);
+large_scale_fading=large_scale_fading/mean(large_scale_fading, "all")*large_scale_fading_mean;
 
 for ii=1:N_cell_x
     for jj=1:N_cell_y
@@ -57,7 +59,7 @@ for ii=1:N_cell_x
             ,'AveragePathGains', [0,-5 -2 -7],'ChannelFiltering',false...
             ,'MaximumDopplerShift',5000000);
         cell_matrix(ii,jj).channel=my_channel;
-        r=log_normal.random;
+        r=large_scale_fading(ii,jj);
         % r=1;
         % coef_array=path_loss*r*abs(sum(my_channel(),2));%100*n_delay_taps->100*1
         coef_vec=path_loss*r*ones(100,1);
@@ -132,8 +134,8 @@ obj.coef_vec_cell_matrix=coef_vec_cell_matrix;
 obj.total_users=total_users;
 obj.N_user_matrix=N_users;
 obj.all_rate_matrix=all_rate_matrix;
-obj.mean_rate=mean(all_rate_matrix, 'all')*20;
-disp('mean rate is 20 times larger (default)')
+obj.mean_rate=mean(all_rate_matrix, 'all')*25;
+disp('mean rate is 25 times larger (default)')
 obj.N_max_user=max(N_users,[], 'all');
 % save('cell_matrix_class.mat', "cell_matrix")
 end
