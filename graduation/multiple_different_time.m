@@ -2,7 +2,7 @@
 clear
 close all
 clc
-N_iter=2;
+N_iter=10;
 N_Solver=4;
 time_slot_max_row=[50 100 150 200];
 rate_dp_matrix          =zeros(N_iter, length(time_slot_max_row));
@@ -79,6 +79,7 @@ for ii=1:N_iter
 
     end
 end
+%%
 mean_rate_dp=mean(rate_dp_matrix);
 % mean_rate_heu=mean(rate_heu_matrix);
 mean_rate_sens=mean(rate_sens_matrix);
@@ -166,7 +167,7 @@ legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
 %%
 clear m
-save('multiple_time2.mat')
+save('multiple_time10.mat')
 
 % assume cell_matrix is done
 

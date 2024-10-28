@@ -158,7 +158,7 @@ grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 
 %%
-
+clear s
 save('single_different_time10.mat')
 
 % assume cell_matrix is done

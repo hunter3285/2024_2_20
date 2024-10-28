@@ -7,6 +7,7 @@ s=Single_UAV_Solver_inst;
 
 s.time_slot_max=time_slot_max;
 s.power_initial_vec=s.p_mean*ones(1, time_slot_max);
+s.p_max_total= s.time_slot_max* s.p_mean;
 s.initialize_DP_Solver();
 %% test DP
 d=s.Solver_row(1);
