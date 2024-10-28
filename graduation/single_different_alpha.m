@@ -157,7 +157,6 @@ legend('DP(Proposed)', 'Heuristic', 'DP for Sensing only', 'DP for Communication
 title("Average communication performance on different alpha")
 
 %%
-clear s
 save('single_different_alpha10.mat')
 
 % assume cell_matrix is done

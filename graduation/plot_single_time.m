@@ -16,11 +16,11 @@ hold on
 plot(time_slot_max_row, mean_rate_heu, '-^');
 plot(time_slot_max_row, mean_rate_sens, 'r-x');
 plot(time_slot_max_row, mean_rate_comm, '-*');
-ylabel('Total performance (bits)')
+ylabel('Value of objective function (bits)')
 xlabel('Time limit (Time slots)')
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
-title("Average total performance on different time limit")
+title("Average value of objective function on different time slot")
 
 figure()
 plot(time_slot_max_row, mean_rate_dp_normalized, '-o');
@@ -35,11 +35,11 @@ legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 title("Average normalized total performance on different time limit")
 
 figure()
-plot(time_slot_max_row, mean_N_SAR_dp, '--o');
+plot(time_slot_max_row, mean_N_SAR_dp, '-o');
 hold on
-plot(time_slot_max_row, mean_N_SAR_heu, '--^');
-plot(time_slot_max_row, mean_N_SAR_sens, '--x');
-plot(time_slot_max_row, mean_N_SAR_comm, '--*');
+plot(time_slot_max_row, mean_N_SAR_heu, '-^');
+plot(time_slot_max_row, mean_N_SAR_sens, 'r-x');
+plot(time_slot_max_row, mean_N_SAR_comm, '-*');
 ylabel('Coverage (cells)')
 xlabel('Time limit (Time slots)')
 title("Average coverage on different time limit")
@@ -65,7 +65,7 @@ plot(time_slot_max_row, mean_comm_rate_heu, '-^');
 plot(time_slot_max_row, mean_comm_rate_sens, 'r-x');
 plot(time_slot_max_row, mean_comm_rate_comm, '-*');
 xlabel('Time limit (Time slots)')
-ylabel('Normalized communication performance')
+ylabel('Communication performance (bits)')
 title("Average communication capacity on different time limit")
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
