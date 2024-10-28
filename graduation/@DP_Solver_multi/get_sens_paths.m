@@ -25,6 +25,7 @@ for ii=1:obj.N_UAV
     %%上面求完了path，再把參數設定回來計算結果
     Solver_inst.sensing_matrix=obj.fixed_sensing_matrix;
     Solver_inst.sensing_matrix_2=obj.fixed_sensing_matrix_2;
+    Solver_inst.coef_vec_cell_matrix=obj.fixed_coef_vec_cell_matrix;
     obj.last_step_turn_row(ii)=last_step_turn;
     obj.last_turn_right_or_left_row(ii)=last_turn_right_or_left;
     obj.UAVs_step_with_time(2*(ii-1)+1:2*ii,:)=all_step_with_time;

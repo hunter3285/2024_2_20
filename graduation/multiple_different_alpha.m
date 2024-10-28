@@ -26,10 +26,11 @@ comm_rate_comm_matrix_normalized=   zeros(N_iter,length(alpha_row));
 %%
 
 for ii=1:N_iter
+    m=Multiple_UAV_Solver;
     for jj=1:length(alpha_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
-            = test_multiple_UAV_alpha(alpha_row(jj));
+            = test_multiple_UAV_alpha(alpha_row(jj), M);
 
 
 
@@ -161,7 +162,7 @@ grid on
 legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different alpha")
 %%
-
+clear m
 save('multiple_different_alpha2.mat')
 
 % assume cell_matrix is done

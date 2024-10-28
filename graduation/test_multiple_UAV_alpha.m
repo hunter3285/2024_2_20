@@ -1,11 +1,10 @@
 function [rate_dp, N_SAR_dp, comm_rate_dp, rate_sens, N_SAR_sens, ...
-    comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]=test_multiple_UAV_alpha(alpha)
+    comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]=test_multiple_UAV_alpha(alpha, Multiple_UAV_Solver_inst)
 
 
-m=Multiple_UAV_Solver;
-m.mean_rate=m.mean_rate/40*alpha;
-% /40 is because the mean rate is multiplied by 40 in the file
-% @Multiple_UAV_Solver/build_cells.m
+m=Multiple_UAV_Solver_inst;
+m.mean_rate=m.mean_rate/alpha_multiplier*alpha;
+
 disp(['Now alpha is ', num2str(alpha)])
 m.initialize_DP_multi_Solver();
 

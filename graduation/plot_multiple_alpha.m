@@ -1,6 +1,6 @@
 % 1. load 原本的
 % 2. 改第二個section的檔名
-load('multiple_different_alpha2.mat')
+load('multiple_alpha10.mat')
 %%
 
 mean_rate_dp_old=mean_rate_dp;
