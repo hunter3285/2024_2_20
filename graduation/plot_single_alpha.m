@@ -42,7 +42,7 @@ plot(alpha_row, mean_N_SAR_sens, 'r-x');
 plot(alpha_row, mean_N_SAR_comm, '-*');
 ylabel('Coverage (cells)')
 xlabel('alpha (times of cell average rate)')
-title("Average coverage on different time limit")
+title("Average coverage on different alpha")
 grid on
 legend('DP(Proposed)', 'Heurstic', 'Sensing only', 'Communication only')
 
