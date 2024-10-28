@@ -3,7 +3,7 @@ function [rate_dp, N_SAR_dp, comm_rate_dp, rate_sens, N_SAR_sens, ...
 
 
 m=Multiple_UAV_Solver_inst;
-m.mean_rate=m.mean_rate/alpha_multiplier*alpha;
+m.mean_rate=m.mean_rate/Multiple_UAV_Solver_inst.alpha_multiplier*alpha;
 
 disp(['Now alpha is ', num2str(alpha)])
 m.initialize_DP_multi_Solver();

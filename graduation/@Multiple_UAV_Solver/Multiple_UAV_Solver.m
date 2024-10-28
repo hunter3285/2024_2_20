@@ -63,7 +63,7 @@ classdef Multiple_UAV_Solver < Single_UAV_Solver
 %         Solver_row; % default path solver is DP
 %         N_Solver; % number of algorithms
         N_UAV;
-        alpha_multiplier;
+        % alpha_multiplier;
     
         % unused parameters
 %         total_users;

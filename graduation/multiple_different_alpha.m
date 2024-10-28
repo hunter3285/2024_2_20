@@ -1,6 +1,9 @@
 %% setting the test
-N_iter=5;
-N_Solver=4;
+clear all
+clc
+close all
+N_iter=2;
+N_Solver=3;
 alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
 N_SAR_dp_matrix         =zeros(N_iter, length(alpha_row));
@@ -30,7 +33,7 @@ for ii=1:N_iter
     for jj=1:length(alpha_row)
         [rate_dp, N_SAR_dp, comm_rate_dp, ...
             rate_sens, N_SAR_sens, comm_rate_sens, rate_comm, N_SAR_comm, comm_rate_comm]...
-            = test_multiple_UAV_alpha(alpha_row(jj), M);
+            = test_multiple_UAV_alpha(alpha_row(jj), m);
 
 
 
@@ -163,7 +166,7 @@ legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different alpha")
 %%
 clear m
-save('multiple_different_alpha2.mat')
+save('multipl_alpha2.mat')
 
 % assume cell_matrix is done
 
