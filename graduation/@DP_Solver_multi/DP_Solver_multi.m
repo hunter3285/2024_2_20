@@ -46,12 +46,13 @@ classdef DP_Solver_multi < Path_Solver_multi
             obj.fixed_sensing_matrix_2=obj.fixed_sensing_matrix;
             N_max_user=UAV_Solver_instance.N_max_user;
             obj.fixed_coef_vec_cell_matrix=zeros(obj.N_cell_x, obj.N_cell_y, N_max_user);
-            for ii=1:obj.N_cell_x
-                for jj=obj.N_cell_y
-                    l=length(UAV_Solver_instance.coef_vec_cell_matrix(ii,jj).coef_array);
-                    obj.fixed_coef_vec_cell_matrix(ii,jj,1:l)=UAV_Solver_instance.coef_vec_cell_matrix(ii,jj).coef_array(1:l);
-                end
-            end
+            obj.fixed_coef_vec_cell_matrix=obj.Solver_row(1).coef_vec_cell_matrix;
+            % for ii=1:obj.N_cell_x
+            %     for jj=obj.N_cell_y
+            %         l=length(UAV_Solver_instance.coef_vec_cell_matrix(ii,jj).coef_array);
+            %         obj.fixed_coef_vec_cell_matrix(ii,jj,1:l)=UAV_Solver_instance.coef_vec_cell_matrix(ii,jj).coef_array(1:l);
+            %     end
+            % end
         end
  
     end

@@ -167,7 +167,7 @@ legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different time limit")
 %%
 clear m
-save('multiple_time10.mat')
+save('multiple_time10_new.mat')
 
 % assume cell_matrix is done
 

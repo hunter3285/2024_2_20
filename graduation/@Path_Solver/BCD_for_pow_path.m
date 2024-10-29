@@ -13,8 +13,8 @@ while ~isequal(obj.all_step, obj.all_step_old)  && ii<=obj.N_max_pow_path% after
     obj.record_result();
     obj.clear_dp();
     obj.get_dp_result();
-    error=(obj.get_correct_rate+obj.n_grid*obj.mean_rate-obj.sum_rate)*isequal(obj.all_step, obj.all_step_old)
-    if obj.sum_rate-obj.sum_rate_old<-1e-3
+    diff_pow_path=(obj.get_correct_rate+obj.n_grid*obj.mean_rate-obj.sum_rate)*isequal(obj.all_step, obj.all_step_old)
+    if obj.get_correct_rate+obj.n_grid*obj.mean_rate-obj.sum_rate_old<-1e-3
         obj.sum_rate
         obj.sum_rate_old
         disp("BCD didn't improve rate in BCD_for_pow_path")

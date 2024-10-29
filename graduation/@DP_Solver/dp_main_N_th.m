@@ -11,8 +11,6 @@ function [max_profit, max_index]=dp_main_N_th(obj, N)
     [max_profit,max_index]=max(obj.dp_matrix(:,:,:,:), [], "all");
 %     dp_array=reshape(obj.dp_matrix(:,:,:,time_slot+1), 1, []);
     for jj=1:N-1
-        jj
-        max_index
         obj.dp_matrix(max_index)=0;
         [max_profit,max_index]=max(obj.dp_matrix(:,:,:,:), [], "all");
     end

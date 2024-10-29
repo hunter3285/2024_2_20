@@ -17,6 +17,7 @@ rate_vec=zeros(1, N_UAV);
 for ii=1:N_UAV  
     all_step=obj.eliminate_same_steps(UAVs_step_with_time(ii*2-1:ii*2, :));
     Solver_inst=obj.Solver_row(ii);
+    % Solver_inst.coef_vec_cell_matrix=obj.fixed_coef_vec_cell_matrix;
     if ~isequal(all_step(:,1), start)
         continue
     end

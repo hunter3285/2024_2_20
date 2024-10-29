@@ -10,15 +10,14 @@ function [sum_rate_optimal_dp, visited_dp, visited_inidicator, visited_indicator
 % tic;
 [sum_rate_optimal_dp, max_index]=obj.dp_main_N_th(N);
 % toc;
-max_index
 %%
 % dp_matrix=dp_inst.dp_matrix;
 visited_reverse=zeros(obj.N_cell_x, obj.N_cell_y);
 % visited_optimal=visited_reverse;
-direction=ceil(max_index / (obj.N_cell_x*obj.N_cell_y))-1 % 0 to 3
-real_index=(max_index-direction*obj.N_cell_x*obj.N_cell_y)
-x=mod(real_index - 1, obj.N_cell_x)+1
-y=ceil(real_index/obj.N_cell_x)
+direction=ceil(max_index / (obj.N_cell_x*obj.N_cell_y))-1; % 0 to 3
+real_index=(max_index-direction*obj.N_cell_x*obj.N_cell_y);
+x=mod(real_index - 1, obj.N_cell_x)+1;
+y=ceil(real_index/obj.N_cell_x);
 time=obj.time_slot_max-1;
 last_step_matrix=obj.last_step_matrix;
 dp_matrix=obj.dp_matrix;
@@ -107,6 +106,8 @@ obj.all_step_with_time=obj.StepWithTimeSlot();
 obj.visited_indicator_matrix=visited_inidicator;
 obj.visited_indicator_matrix_2=visited_indicator_2;
 obj.n_grid=n_grid;
+obj.rate_after_power_opt=[];
+obj.get_UAV_start_end;
 
 
 
