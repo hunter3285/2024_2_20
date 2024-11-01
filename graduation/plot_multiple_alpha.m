@@ -1,6 +1,6 @@
 % 1. load 原本的
 % 2. 改第二個section的檔名
-load('multipl_alpha2.mat')
+load('multipl_alpha10.mat')
 close all
 clc
 %%

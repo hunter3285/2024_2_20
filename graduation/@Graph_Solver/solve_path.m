@@ -88,9 +88,18 @@ end
 %         rate=rate+obj.get_rate(a,b,1);
 %     end
 % end
+all_step_new=[];
+counter=1;
+for ii=1:size(all_step,2)
+    if ~isequal(all_step(:, ii), [0;0])
+        all_step_new(:, counter)=all_step(:, ii);
+        counter=counter+1;
+    end
+end
 obj.solved_col=y;
-obj.all_step=all_step;
+obj.all_step=all_step_new;
 obj.all_step_with_time=obj.StepWithTimeSlot;
+obj.solved_adjacency_matrix=x;
 obj.sum_rate=obj.get_correct_rate+obj.count_n_grid*obj.mean_rate;
 clear;
 end

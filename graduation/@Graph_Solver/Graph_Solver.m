@@ -6,6 +6,7 @@ classdef Graph_Solver < Path_Solver
         node_number_matrix;
         all_rate_matrix;
         solved_col;
+        solved_adjacency_matrix;
         % below are parameters inherited from Path_Solver
 %         N_cell_x;
 %         N_cell_y;

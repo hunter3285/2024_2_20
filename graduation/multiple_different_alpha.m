@@ -2,7 +2,7 @@
 clear all
 clc
 close all
-N_iter=2;
+N_iter=10;
 N_Solver=3;
 alpha_row=[10 30 50 70 90];
 rate_dp_matrix          =zeros(N_iter, length(alpha_row));
@@ -166,7 +166,7 @@ legend('DP(Proposed)', 'DP for Sensing only', 'DP for Communication only')
 title("Average communiation performance on different alpha")
 %%
 clear m
-save('multipl_alpha2.mat')
+save('multipl_alpha10.mat')
 
 % assume cell_matrix is done
 
